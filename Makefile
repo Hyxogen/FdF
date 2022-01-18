@@ -11,10 +11,11 @@ MLX_LIB				:= $(MLX_DIR)/libmlx.a
 
 SRC_DIR				:= ./src
 
-SRC_FILES			:= fdf.c
+SRC_FILES			:= fdf.c matrix4f_mulm.c matrix4f_mulv.c matrix4f_ortho.c \
+						matrix4f_transpose.c
 OBJ_FILES			:= $(addprefix $(INT_DIR)/,$(SRC_FILES:%.c=%.o))
 
-VPATH				:= $(SRC_DIR)
+VPATH				:= $(SRC_DIR) $(SRC_DIR)/math $(SRC_DIR)/math/matrix
 
 DEFINES				:=
 INCLUDE_DIRS		:= -I $(LIBFT_DIR)/include -I $(MLX_DIR)
