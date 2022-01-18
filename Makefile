@@ -6,16 +6,69 @@ INT_DIR 			:= ./obj
 
 LIBFT_DIR			:= $(DEPEND_DIR)/libft
 LIBFT_LIB			:= $(LIBFT_DIR)/libft.a
-MLX_DIR				:= $(VENDOR_DIR)/minilibx-osx
-MLX_LIB				:= $(MLX_DIR)/libmlx.a
+
+MLX_DIR				:=
+MLX_LIB				:=
+
+OSX_MLX_DIR			:= $(VENDOR_DIR)/minilibx-osx
+OSX_MLX_LIB			:= $(OSX_MLX_DIR)/libmlx_x86_64.a
+LINUX_MLX_DIR		:= $(VENDOR_DIR)/minilibx-linux
+LINUX_MLX_LIB		:= $(LINUX_MLX_DIR)/libmlx_Linux.a
+
+ifndef config
+	config := debug_osx
+endif
+
+ifeq ($(config), debug_linux)
+	ALL_CFLAGS		+= $(DEBUG_CFLAGS)
+	ALL_LINKFLAGS	+= $(DEBUG_LINKFLAGS)
+	DEFINES			+= $(DEBUG_DEFINES)
+	MLX_LIB			:= $(LINUX_MLX_LIB)
+	MLX_DIR			:= $(LINUX_MLX_DIR)
+else ifeq ($(config), release_linux)
+	ALL_CFLAGS		+= $(RELEASE_CFLAGS)
+	ALL_LINKFLAGS	+= $(RELEASE_LINKFLAGS)
+	DEFINES			+= $(RELEASE_DEFINES)
+	MLX_LIB			:= $(LINUX_MLX_LIB)
+	MLX_DIR			:= $(LINUX_MLX_DIR)
+else ifeq ($(config), distr_linux)
+	ALL_CFLAGS		+= $(DISTR_CFLAGS)
+	ALL_CFLAGS		+= $(DISTR_DEFINES)
+	ALL_LINKFLAGS	+= $(DISTR_LINKFLAGS)
+	MLX_LIB			:= $(LINUX_MLX_LIB)
+	MLX_DIR			:= $(LINUX_MLX_DIR)
+else ifeq ($(config), debug_osx)
+	ALL_CFLAGS		+= $(DEBUG_CFLAGS)
+	ALL_LINKFLAGS	+= $(DEBUG_LINKFLAGS)
+	DEFINES			+= $(DEBUG_DEFINES)
+	MLX_LIB			:= $(OSX_MLX_LIB)
+	MLX_DIR			:= $(OSX_MLX_DIR)
+else ifeq ($(config), release_osx)
+	ALL_CFLAGS		+= $(RELEASE_CFLAGS)
+	ALL_LINKFLAGS	+= $(RELEASE_LINKFLAGS)
+	DEFINES			+= $(RELEASE_DEFINES)
+	MLX_LIB			:= $(OSX_MLX_LIB)
+	MLX_DIR			:= $(OSX_MLX_DIR)
+else ifeq ($(config), distr_osx)
+	ALL_CFLAGS		+= $(DISTR_CFLAGS)
+	ALL_CFLAGS		+= $(DISTR_DEFINES)
+	ALL_LINKFLAGS	+= $(DISTR_LINKFLAGS)
+	MLX_LIB			:= $(OSX_MLX_LIB)
+	MLX_DIR			:= $(OSX_MLX_DIR)
+else
+	$(error "Invalid config $(config)")
+endif
 
 SRC_DIR				:= ./src
 
 SRC_FILES			:= fdf.c matrix4f_mulm.c matrix4f_mulv.c matrix4f_ortho.c \
-						matrix4f_transpose.c
+						matrix4f_transpose.c matrix4f_transpose.c \
+						window_destroy.c window_init.c safe_malloc.c \
+						assert.c
 OBJ_FILES			:= $(addprefix $(INT_DIR)/,$(SRC_FILES:%.c=%.o))
 
-VPATH				:= $(SRC_DIR) $(SRC_DIR)/math $(SRC_DIR)/math/matrix4f
+VPATH				:= $(SRC_DIR) $(SRC_DIR)/math $(SRC_DIR)/math/matrix4f \
+						$(SRC_DIR)/gfx/window $(SRC_DIR)/util
 
 DEFINES				:=
 INCLUDE_DIRS		:= -I $(LIBFT_DIR)/include -I $(MLX_DIR)
@@ -25,60 +78,30 @@ CC					:= clang
 LINK_CMD			:= clang
 
 ALL_CFLAGS			:= -std=c89 -Wall -Wextra -Werror -pedantic $(INCLUDE_DIRS)
-ALL_LINKFLAGS		:=
+ALL_LINKFLAGS		:= -framework OpenGL -framework AppKit
 
 DEBUG_CFLAGS		:= -g -O0 -fsanitize=address
 DEBUG_LINKFLAGS		:= -fsanitize=address -fsanitize=undefined
-DEBUG_DEFINES		:= -DMINI_SERVER_DEBUG
+DEBUG_DEFINES		:= -DFDF_DEBUG
 
 RELEASE_CFLAGS		:= -g -O2 -fsanitize=address
 RELEASE_LINKFLAGS	:= -fsanitize=address -fsanitize=undefined
-RELEASE_DEFINES		:= -DMINI_SERVER_RELEASE
+RELEASE_DEFINES		:= -DFDF_RELEASE
 
 DISTR_CFLAGS		:= -Ofast -g0
 DISTR_LINKFLAGS		:=
-DISTR_DEFINES		:= -DMINI_SERVER_DISTRIBUTION
+DISTR_DEFINES		:= -DFDF_DISTRIBUTION
 
 SILENT		:= @
 ifdef verbose
 	SILENT	:=
 endif
 
-ifndef config
-	config := debug_linux
-endif
-
-ifeq ($(config), debug_linux)
-	ALL_CFLAGS += $(DEBUG_CFLAGS)
-	ALL_LINKFLAGS += $(DEBUG_LINKFLAGS)
-	DEFINES += $(DEBUG_DEFINES)
-else ifeq ($(config), release_linux)
-	ALL_CFLAGS += $(RELEASE_CFLAGS)
-	ALL_LINKFLAGS += $(RELEASE_LINKFLAGS)
-	DEFINES += $(RELEASE_DEFINES)
-else ifeq ($(config), distr_linux)
-	ALL_CFLAGS += $(DISTR_CFLAGS)
-	ALL_CFLAGS += $(DISTR_DEFINES)
-	ALL_LINKFLAGS += $(DISTR_LINKFLAGS)
-else ifeq ($(config), debug_osx)
-	ALL_CFLAGS += $(DEBUG_CFLAGS)
-	ALL_LINKFLAGS += $(DEBUG_LINKFLAGS)
-	DEFINES += $(DEBUG_DEFINES)
-else ifeq ($(config), release_osx)
-	ALL_CFLAGS += $(RELEASE_CFLAGS)
-	ALL_LINKFLAGS += $(RELEASE_LINKFLAGS)
-	DEFINES += $(RELEASE_DEFINES)
-else ifeq ($(config), distr_osx)
-	ALL_CFLAGS += $(DISTR_CFLAGS)
-	ALL_CFLAGS += $(DISTR_DEFINES)
-	ALL_LINKFLAGS += $(DISTR_LINKFLAGS)
-endif
-
 all: $(TARGET)
 
 $(TARGET): $(OBJ_FILES) $(LIBRARIES)
 	$(SILENT)echo Linking $@
-	$(SILENT)$(LINK_CMD) $(ALL_LINKFLAGS) $(OBJ_FILES) $(LIBRARIES) -o $@
+	$(SILENT)$(LINK_CMD) $(OBJ_FILES) $(LIBRARIES) $(ALL_LINKFLAGS) -o $@
 
 $(INT_DIR)/%.o: %.c
 	$(SILENT)echo $(notdir $<)

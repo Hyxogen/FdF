@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fdf.c                                              :+:    :+:            */
+/*   window_destroy.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/01/18 15:34:26 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/18 15:38:26 by dmeijer       ########   odam.nl         */
+/*   Created: 2022/01/18 15:20:31 by dmeijer       #+#    #+#                 */
+/*   Updated: 2022/01/18 15:47:01 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "gfx/window.h"
-#include "mlx.h"
+#include "../window.h"
+#include <mlx.h>
+#include <stdlib.h>
 
-int
-	main(void)
+void
+	_window_destroy_mlx(t_window *window)
 {
-	void		*mlx_handle;
-	t_window	*window;
+	mlx_clear_window(window->m_mlx_handle, window->m_window_handle);
+	mlx_destroy_window(window->m_mlx_handle, window->m_window_handle);
+}
 
-	mlx_handle = mlx_init();
-	window = window_create(mlx_handle, "Hello World", 500, 500);
-	while (TRUE)
-		;
-	window_destroy(window, TRUE);
-	return (0);
+void
+	window_destroy(t_window *window, t_bool free_self)
+{
+	_window_destroy_mlx(window);
+	if (free_self)
+		free(window);
 }
