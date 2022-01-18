@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   matrix4f_mulv.c                                    :+:    :+:            */
+/*   vector3f.h                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/01/18 12:49:21 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/18 14:36:44 by dmeijer       ########   odam.nl         */
+/*   Created: 2022/01/18 12:54:35 by dmeijer       #+#    #+#                 */
+/*   Updated: 2022/01/18 14:30:29 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../matrix4f.h"
+#ifndef VECTOR3F_H
+# define VERCTOR3F_H
 
-t_vector4f
-	matri4f_mulv(const t_matrix4f *mat, const t_vector4f *vec)
-{
-	t_vector4f	mul_vec;
-	t_vector4f	*mat_row;
-	float		*mul_elements;
-	int			row;
+typedef struct s_vector3f {
+	float	m_x;
+	float	m_y;
+	float	m_z;
+}	t_vector3f;
 
-	row = 0;
-	while (row < 4)
-	{
-		mul_elements = (float *) vec;
-		mul_elements[row]
-			= vector4f_dot(&mat->m_elements[0 + row * 4], vec);
-		row++;
-	}
-	return (mul_vec);
-}
+t_vector3f	vector3f_add(const t_vector3f *a, const t_vector3f *b);
+
+t_vector3f	vector3f_muls(const t_vector3f *a, float scalar);
+
+float		vector3f_dot(const t_vector3f *a, const t_vector3f *b);
+#endif

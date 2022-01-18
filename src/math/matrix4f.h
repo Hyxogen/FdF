@@ -6,20 +6,18 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 12:50:59 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/18 12:53:12 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/01/18 14:30:10 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MATRIX4F_H
 # define MATRIX4F_H
 
-# include "../vector4f.h"
+# include "vector4f.h"
+# include "vector3f.h"
 
 typedef struct s_matrix4f {
-	union {
-		t_vector4f	m_rows[4];
-		float		m_elements[4 * 4];
-	} u_data;
+	float	m_elements[4 * 4];
 }	t_matrix4f;
 
 typedef struct s_ortho_settings {
