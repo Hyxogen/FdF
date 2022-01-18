@@ -1,29 +1,29 @@
-TARGET			:= fdf 
+TARGET				:= fdf 
 
-DEPEND_DIR 		:= ./Dependencies
-VENDOR_DIR 		:= ./Vendor
-INT_DIR 		:= ./obj
+DEPEND_DIR 			:= ./Dependencies
+VENDOR_DIR 			:= ./Vendor
+INT_DIR 			:= ./obj
 
-LIBFT_DIR		:= $(DEPEND_DIR)/libft
-LIBFT_LIB		:= $(LIBFT_DIR)/libft.a
-MLX_DIR			:= $(VENDOR_DIR)/minilibx
-MLX_LIB			:= $(MLX_DIR)/libmlx_Linux.a
+LIBFT_DIR			:= $(DEPEND_DIR)/libft
+LIBFT_LIB			:= $(LIBFT_DIR)/libft.a
+MLX_DIR				:= $(VENDOR_DIR)/minilibx-osx
+MLX_LIB				:= $(MLX_DIR)/libmlx.a
 
-SRC_DIR			:= ./src
+SRC_DIR				:= ./src
 
-SRC_FILES		:= fdf.c
-OBJ_FILES		:= $(addprefix $(INT_DIR)/,$(SRC_FILES:%.c=%.o))
+SRC_FILES			:= fdf.c
+OBJ_FILES			:= $(addprefix $(INT_DIR)/,$(SRC_FILES:%.c=%.o))
 
-VPATH			:= $(SRC_DIR)
+VPATH				:= $(SRC_DIR)
 
-DEFINES			:=
+DEFINES				:=
 INCLUDE_DIRS		:= -I $(LIBFT_DIR)/include -I $(MLX_DIR)
-LIBRARIES		:= $(LIBFT_LIB) $(MLX_LIB)
+LIBRARIES			:= $(LIBFT_LIB) $(MLX_LIB)
 
-CC			:= clang
-LINK_CMD		:= clang
+CC					:= clang
+LINK_CMD			:= clang
 
-ALL_CFLAGS		:= -std=c89 -Wall -Wextra -Werror -pedantic $(INCLUDE_DIRS)
+ALL_CFLAGS			:= -std=c89 -Wall -Wextra -Werror -pedantic $(INCLUDE_DIRS)
 ALL_LINKFLAGS		:=
 
 DEBUG_CFLAGS		:= -g -O0 -fsanitize=address
@@ -44,18 +44,30 @@ ifdef verbose
 endif
 
 ifndef config
-	config := debug
+	config := debug_linux
 endif
 
-ifeq ($(config), debug)
+ifeq ($(config), debug_linux)
 	ALL_CFLAGS += $(DEBUG_CFLAGS)
 	ALL_LINKFLAGS += $(DEBUG_LINKFLAGS)
 	DEFINES += $(DEBUG_DEFINES)
-else ifeq ($(config), release)
+else ifeq ($(config), release_linux)
 	ALL_CFLAGS += $(RELEASE_CFLAGS)
 	ALL_LINKFLAGS += $(RELEASE_LINKFLAGS)
 	DEFINES += $(RELEASE_DEFINES)
-else ifeq ($(config), distribution)
+else ifeq ($(config), distr_linux)
+	ALL_CFLAGS += $(DISTR_CFLAGS)
+	ALL_CFLAGS += $(DISTR_DEFINES)
+	ALL_LINKFLAGS += $(DISTR_LINKFLAGS)
+else ifeq ($(config), debug_osx)
+	ALL_CFLAGS += $(DEBUG_CFLAGS)
+	ALL_LINKFLAGS += $(DEBUG_LINKFLAGS)
+	DEFINES += $(DEBUG_DEFINES)
+else ifeq ($(config), release_osx)
+	ALL_CFLAGS += $(RELEASE_CFLAGS)
+	ALL_LINKFLAGS += $(RELEASE_LINKFLAGS)
+	DEFINES += $(RELEASE_DEFINES)
+else ifeq ($(config), distr_osx)
 	ALL_CFLAGS += $(DISTR_CFLAGS)
 	ALL_CFLAGS += $(DISTR_DEFINES)
 	ALL_LINKFLAGS += $(DISTR_LINKFLAGS)
