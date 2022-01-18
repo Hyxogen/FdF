@@ -6,12 +6,12 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 12:54:35 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/18 14:30:29 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/01/18 14:51:54 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR3F_H
-# define VERCTOR3F_H
+# define VECTOR3F_H
 
 typedef struct s_vector3f {
 	float	m_x;

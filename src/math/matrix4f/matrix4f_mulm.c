@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 12:49:01 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/18 14:38:40 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/01/18 14:51:38 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ t_matrix4f
 		while (column < 0)
 		{
 			ret.m_elements[column + row * 4]
-				= vector4f_dot(&a->m_elements[0 + row * 4],
-					&b->m_elements[0 + column * 4]);
+				= vector4f_dot((t_vector4f *) &a->m_elements[0 + row * 4],
+					(t_vector4f *) &b->m_elements[0 + column * 4]);
 			column++;
 		}
 		row++;
