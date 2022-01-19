@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   image_buffer_destroy.c                             :+:    :+:            */
+/*   vector2i.h                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/01/19 12:49:15 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/19 13:30:33 by dmeijer       ########   odam.nl         */
+/*   Created: 2022/01/19 09:58:23 by dmeijer       #+#    #+#                 */
+/*   Updated: 2022/01/19 13:32:01 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../image_buffer.h"
-#include <ft_stdbool.h>
-#include <stdlib.h>
-#include <mlx.h>
+#ifndef VECTOR2I_H
+# define VECTOR2I_H
 
-t_bool
-	_ib_destroy_handle(t_image_buffer *buffer)
-{
-	mlx_destroy_image(buffer->m_mlx_handle, buffer->m_image_handle);
-	return (TRUE);
-}
+# include "../util/types.h"
 
-void
-	ib_destroy(t_image_buffer *buffer, t_bool free_self)
-{
-	_ib_destroy_handle(buffer);
-	if (free_self)
-		free(buffer);
-}
+typedef struct s_vector2i {
+	t_int32	m_x;
+	t_int32	m_y;
+}	t_vector2i;
+
+#endif

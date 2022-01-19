@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   image_buffer_destroy.c                             :+:    :+:            */
+/*   image_buffer_flush.c                               :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/01/19 12:49:15 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/19 13:30:33 by dmeijer       ########   odam.nl         */
+/*   Created: 2022/01/19 13:11:58 by dmeijer       #+#    #+#                 */
+/*   Updated: 2022/01/19 13:31:34 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../image_buffer.h"
-#include <ft_stdbool.h>
-#include <stdlib.h>
 #include <mlx.h>
+#include <ft_stdbool.h>
 
 t_bool
-	_ib_destroy_handle(t_image_buffer *buffer)
+	ib_flush(t_image_buffer *buffer, t_window *window, t_vector2i point)
 {
-	mlx_destroy_image(buffer->m_mlx_handle, buffer->m_image_handle);
-	return (TRUE);
-}
+	t_bool	success;
 
-void
-	ib_destroy(t_image_buffer *buffer, t_bool free_self)
-{
-	_ib_destroy_handle(buffer);
-	if (free_self)
-		free(buffer);
+	success = ib_put(buffer, window, point);
+	ib_clear(buffer);
+	return (success);
 }

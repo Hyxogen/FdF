@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   image_buffer_destroy.c                             :+:    :+:            */
+/*   renderer.h                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/01/19 12:49:15 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/19 13:30:33 by dmeijer       ########   odam.nl         */
+/*   Created: 2022/01/19 13:07:37 by dmeijer       #+#    #+#                 */
+/*   Updated: 2022/01/19 13:08:53 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../image_buffer.h"
-#include <ft_stdbool.h>
-#include <stdlib.h>
-#include <mlx.h>
+#ifndef RENDERER_H
+# define RENDERER_H
 
-t_bool
-	_ib_destroy_handle(t_image_buffer *buffer)
-{
-	mlx_destroy_image(buffer->m_mlx_handle, buffer->m_image_handle);
-	return (TRUE);
-}
+# include "image_buffer.h"
 
-void
-	ib_destroy(t_image_buffer *buffer, t_bool free_self)
-{
-	_ib_destroy_handle(buffer);
-	if (free_self)
-		free(buffer);
-}
+void	render_line(t_image_buffer *buffer, t_vector2 start, t_vector2 end);
+
+#endif

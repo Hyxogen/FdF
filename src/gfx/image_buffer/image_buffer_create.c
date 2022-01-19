@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/19 10:05:45 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/19 12:45:53 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/01/19 13:30:11 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 #include "util/mem_utils.h"
 #include <stddef.h>
+#include <mlx.h>
 
 t_bool
 	_ib_init_values(t_image_buffer *buffer, void *mlx_handle,
@@ -32,7 +33,7 @@ t_bool
 			buffer->m_mlx_handle,
 			buffer->m_image_width,
 			buffer->m_image_height);
-	buffer->m_image_address = mlx_get_data_addr(
+	buffer->m_image_address = (t_byte *) mlx_get_data_addr(
 			buffer->m_mlx_handle,
 			&buffer->m_bit_per_pixel,
 			&buffer->m_line_width,
