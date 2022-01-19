@@ -24,12 +24,14 @@ SRC_FILES					:= fdf.c matrix4f_mulm.c matrix4f_mulv.c matrix4f_ortho.c \
 								vector4f_dot.c vector4f_muls.c \
 								image_buffer_clear.c image_buffer_create.c \
 								image_buffer_destroy.c image_buffer_flush.c \
-								image_buffer_put_pixel.c image_buffer_put.c
+								image_buffer_put_pixel.c image_buffer_put.c \
+								color_encode.c color_colors.c
 OBJ_FILES					:= $(addprefix $(INT_DIR)/,$(SRC_FILES:%.c=%.o))
 
 VPATH						:= $(SRC_DIR) $(SRC_DIR)/math $(SRC_DIR)/math/matrix4f \
 								$(SRC_DIR)/gfx/window $(SRC_DIR)/util \
-								$(SRC_DIR)/math/vector4f $(SRC_DIR)/gfx/image_buffer
+								$(SRC_DIR)/math/vector4f $(SRC_DIR)/gfx/image_buffer \
+								$(SRC_DIR)/gfx/color
 
 DEFINES						:=
 INCLUDE_DIRS				:= -I $(LIBFT_DIR)/include -I $(SRC_DIR)
@@ -56,11 +58,11 @@ LINUX_DEBUG_LINKFLAGS		:= -fsanitize=address
 LINUX_RELEASE_LINKSFLAGS	:= -fsanitize=address
 LINUX_DISTR_LINKSFLAGS		:=
 
-ALWAYS_DEBUG_CFLAGS			:= -g -O0 -fsanitize=address
+ALWAYS_DEBUG_CFLAGS			:= -g3 -O0 -fsanitize=address
 ALWAYS_DEBUG_LINKFLAGS		:= -fsanitize=address -fsanitize=undefined
 ALWAYS_DEBUG_DEFINES		:= -DFDF_DEBUG
 
-ALWAYS_RELEASE_CFLAGS		:= -g -O2 -fsanitize=address
+ALWAYS_RELEASE_CFLAGS		:= -g3 -O2 -fsanitize=address
 ALWAYS_RELEASE_LINKFLAGS	:= -fsanitize=address -fsanitize=undefined
 ALWAYS_RELEASE_DEFINES		:= -DFDF_RELEASE
 

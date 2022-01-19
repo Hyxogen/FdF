@@ -6,14 +6,14 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/19 10:05:45 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/19 13:30:11 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/01/19 14:37:08 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../image_buffer.h"
 
 #include "util/mem_utils.h"
-#include <stddef.h>
+#include <stdlib.h>
 #include <mlx.h>
 
 t_bool
@@ -34,10 +34,10 @@ t_bool
 			buffer->m_image_width,
 			buffer->m_image_height);
 	buffer->m_image_address = (t_byte *) mlx_get_data_addr(
-			buffer->m_mlx_handle,
-			&buffer->m_bit_per_pixel,
-			&buffer->m_line_width,
-			&buffer->m_endian);
+			buffer->m_image_handle,
+			&(buffer->m_bit_per_pixel),
+			&(buffer->m_line_width),
+			&(buffer->m_endian));
 	return (buffer->m_image_handle != NULL);
 }
 
@@ -47,7 +47,11 @@ t_image_buffer
 	t_image_buffer	*buffer;
 
 	buffer = safe_malloc(sizeof(t_image_buffer));
-	_ib_init_values(buffer, mlx_handle, width, height);
-	_ib_init_handles(buffer);
+	if (!_ib_init_values(buffer, mlx_handle, width, height)
+		|| !_ib_init_handles(buffer))
+	{
+		free(buffer);
+		return (FALSE);
+	}
 	return (buffer);
 }

@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/19 09:56:25 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/19 13:31:34 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/01/19 14:43:03 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ t_image_buffer	*ib_create(void *mlx_handle, t_int32 width, t_int32 height);
 void			ib_destroy(t_image_buffer *buffer, t_bool free_self);
 
 void			ib_put_pixel(t_image_buffer *buffer,
+					t_int32 x, t_int32 y, t_color color);
+void			ib_put_pixelv(t_image_buffer *buffer,
 					t_vector2i point, t_color color);
 void			ib_clear(t_image_buffer *buffer);
 

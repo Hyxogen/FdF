@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/19 13:22:51 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/19 13:25:46 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/01/19 14:27:17 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@ void
 	ft_memset(
 		buffer->m_image_address,
 		0,
-		sizeof(t_int32) * buffer->m_line_width);
+		buffer->m_image_height * buffer->m_line_width);
 }
