@@ -20,13 +20,16 @@ DEPENDENCIES				:= $(LIBFT_LIB)
 SRC_DIR						:= ./src
 
 SRC_FILES					:= fdf.c matrix4f_mulm.c matrix4f_mulv.c matrix4f_ortho.c \
-								matrix4f_transpose.c matrix4f_transpose.c \
-								window_destroy.c window_init.c safe_malloc.c \
-								assert.c
+								matrix4f_transpose.c matrix4f_clear.c \
+								window_destroy.c window_init.c window_update.c \
+								safe_malloc.c \
+								assert.c vector4f_add.c \
+								vector4f_dot.c vector4f_muls.c
 OBJ_FILES					:= $(addprefix $(INT_DIR)/,$(SRC_FILES:%.c=%.o))
 
 VPATH						:= $(SRC_DIR) $(SRC_DIR)/math $(SRC_DIR)/math/matrix4f \
-								$(SRC_DIR)/gfx/window $(SRC_DIR)/util
+								$(SRC_DIR)/gfx/window $(SRC_DIR)/util \
+								$(SRC_DIR)/math/vector4f
 
 DEFINES						:=
 INCLUDE_DIRS				:= -I $(LIBFT_DIR)/include -I $(MLX_DIR)

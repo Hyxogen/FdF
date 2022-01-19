@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 15:00:42 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/18 15:33:53 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/01/19 09:13:08 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,6 @@ t_bool		_window_init(t_window *window, char *title, int width, int height);
 /*MALLOC SAFE*/
 t_window	*window_create(void *mlx, char *title, int width, int height);
 void		window_destroy(t_window *window, t_bool free_self);
+
+void		window_update(t_window *window);
 #endif

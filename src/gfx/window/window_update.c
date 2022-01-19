@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fdf.c                                              :+:    :+:            */
+/*   window_update.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/01/18 15:34:26 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/19 09:14:07 by dmeijer       ########   odam.nl         */
+/*   Created: 2022/01/19 09:13:16 by dmeijer       #+#    #+#                 */
+/*   Updated: 2022/01/19 09:13:56 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "gfx/window.h"
-#include "mlx.h"
+#include "../window.h"
+#include <mlx.h>
 
-int
-	main(void)
+void
+	window_update(t_window *window)
 {
-	void		*mlx_handle;
-	t_window	*window;
-
-	mlx_handle = mlx_init();
-	window = window_create(mlx_handle, "Hello World", 500, 500);
-	while (TRUE)
-		window_update(window);
-	window_destroy(window, TRUE);
-	return (0);
+	mlx_loop(window->m_mlx_handle);
 }
