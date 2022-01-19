@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   vector4f_add.c                                     :+:    :+:            */
+/*   matrix4f_clear.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/01/18 14:53:39 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/19 09:09:18 by dmeijer       ########   odam.nl         */
+/*   Created: 2022/01/19 09:06:16 by dmeijer       #+#    #+#                 */
+/*   Updated: 2022/01/19 09:07:30 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../vector4f.h"
+#include "../matrix4f.h"
+#include <ft_string.h>
 
-t_vector4f
-	vector4f_add(const t_vector4f *a, const t_vector4f *b)
+void
+	matrix4f_clear(t_matrix4f *mat)
 {
-	t_vector4f	ret;
-
-	ret.m_x = a->m_x + b->m_x;
-	ret.m_y = a->m_y + b->m_y;
-	ret.m_z = a->m_w + b->m_w;
-	ret.m_w = a->m_z + b->m_z;
-	return (ret);
+	ft_memset(mat, 0, sizeof(t_matrix4f));
 }
