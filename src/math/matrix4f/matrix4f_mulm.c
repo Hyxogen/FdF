@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 12:49:01 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/18 14:51:38 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/01/19 09:50:39 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 t_matrix4f
 	_matrix4f_mulm(const t_matrix4f *a, const t_matrix4f *b) {
 	t_matrix4f	ret;
-	int			row;
-	int			column;
+	t_int32		row;
+	t_int32		column;
 
 	row = 0;
 	while (row < 4)

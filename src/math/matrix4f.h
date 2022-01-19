@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 12:50:59 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/18 14:30:10 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/01/19 09:50:24 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@
 # include "vector3f.h"
 
 typedef struct s_matrix4f {
-	float	m_elements[4 * 4];
+	t_fl32	m_elements[4 * 4];
 }	t_matrix4f;
 
 typedef struct s_ortho_settings {
-	float	m_near;
-	float	m_far;
-	float	m_left;
-	float	m_right;
-	float	m_top;
-	float	m_bottom;
+	t_fl32	m_near;
+	t_fl32	m_far;
+	t_fl32	m_left;
+	t_fl32	m_right;
+	t_fl32	m_top;
+	t_fl32	m_bottom;
 }	t_ortho_settings;
 
 void		matrix4f_clear(t_matrix4f *mat);
@@ -38,5 +38,7 @@ t_vector4f	matri4f_mulv(const t_matrix4f *mat, const t_vector4f *vec);
 t_matrix4f	matrix4f_ortho(const t_ortho_settings *proj);
 
 t_matrix4f	matrix4f_transpose(const t_matrix4f *mat);
+
+t_matrix4f	matrix4f_rotation(const t_vector3f *axis, t_fl32 angle);
 
 #endif

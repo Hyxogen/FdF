@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 12:55:39 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/18 14:47:33 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/01/19 09:50:09 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ t_matrix4f
 }
 
 t_matrix4f
-	matrix4f_rotation(const t_vector3f *axis, float angle)
+	matrix4f_rotation(const t_vector3f *axis, t_fl32 angle)
 {
-	float		s;
-	float		c;
-	float		omc;
+	t_fl32	s;
+	t_fl32	c;
+	t_fl32	omc;
 
 	s = sin(angle);
 	c = cos(angle);

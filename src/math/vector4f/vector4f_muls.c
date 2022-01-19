@@ -6,14 +6,14 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 14:57:51 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/18 14:58:08 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/01/19 09:49:11 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../vector4f.h"
 
 t_vector4f
-	vector4f_muls(const t_vector4f *a, float scalar)
+	vector4f_muls(const t_vector4f *a, t_fl32 scalar)
 {
 	t_vector4f	ret;
 

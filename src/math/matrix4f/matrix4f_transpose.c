@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 12:43:48 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/18 14:31:17 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/01/19 09:49:49 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ t_matrix4f
 	matrix4f_transpose(const t_matrix4f *mat)
 {
 	t_matrix4f	transposed_mat;
-	int			column;
-	int			row;
+	t_int32		column;
+	t_int32		row;
 
 	row = 0;
 	while (row < 4)

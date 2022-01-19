@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 15:18:43 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/18 15:57:52 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/01/19 09:52:14 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_bool
 }
 
 t_bool
-	_window_init(t_window *window, char *title, int width, int height)
+	_window_init(t_window *window, char *title, t_int32 width, t_int32 height)
 {
 	window->m_title = title;
 	window->m_width = width;
@@ -39,7 +39,7 @@ t_bool
 }
 
 t_window
-	*window_create(void *mlx, char *title, int width, int height)
+	*window_create(void *mlx, char *title, t_int32 width, t_int32 height)
 {
 	t_window	*window;
 

@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 12:54:35 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/18 14:59:13 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/01/19 09:48:46 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define VECTOR3F_H
 
 typedef struct s_vector3f {
-	float	m_x;
-	float	m_y;
-	float	m_z;
+	t_fl32	m_x;
+	t_fl32	m_y;
+	t_fl32	m_z;
 }	t_vector3f;
 
 #endif
