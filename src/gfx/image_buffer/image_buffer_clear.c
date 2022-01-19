@@ -6,14 +6,13 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/19 13:22:51 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/19 15:24:02 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/01/19 15:26:39 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../image_buffer.h"
 #include <ft_string.h>
 
-/*TODO Check if this properly clears the buffer (i.e. makes it black)*/
 void
 	ib_clear(t_image_buffer *buffer)
 {
