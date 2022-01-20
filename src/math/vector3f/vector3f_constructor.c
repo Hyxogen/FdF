@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   renderer.h                                         :+:    :+:            */
+/*   vector3f_constructor.c                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/01/19 13:07:37 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/20 14:59:57 by dmeijer       ########   odam.nl         */
+/*   Created: 2022/01/20 15:07:50 by dmeijer       #+#    #+#                 */
+/*   Updated: 2022/01/20 15:19:04 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDERER_H
-# define RENDERER_H
+#include "../vector3f.h"
 
-# include "image_buffer.h"
-# include "math/vector2i.h"
-# include "math/vector4f.h"
+t_vector3f
+	vector3f(float x, float y, float z)
+{
+	t_vector3f	vector;
 
-void	render_line(t_image_buffer *buffer,
-			t_vector2i start, t_vector2i end, t_color color);
-
-void	render_quads(t_image_buffer *buffer,
-			t_vector2i dimensions, const t_vector4f *points, t_color color);
-
-#endif
+	vector.m_x = x;
+	vector.m_y = y;
+	vector.m_z = z;
+	return (vector);
+}

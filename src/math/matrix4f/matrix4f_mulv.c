@@ -6,14 +6,14 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 12:49:21 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/19 09:51:01 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/01/20 15:20:15 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../matrix4f.h"
 
 t_vector4f
-	matri4f_mulv(const t_matrix4f *mat, const t_vector4f *vec)
+	matrix4f_mulv(const t_matrix4f *mat, const t_vector4f *vec)
 {
 	t_vector4f	mul_vec;
 	t_fl32		*mul_elements;

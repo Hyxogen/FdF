@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/20 09:10:48 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/20 09:21:20 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/01/20 14:56:19 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,20 @@ t_bool
 
 t_bool
 	_map_set_vertices(t_map *map,
+		t_int32 width, t_int32 height, t_vector4f *vertices)
+{
+	map->m_vertices = vertices;
+}
+
+t_bool
+	map_set_vertices(t_map *map,
 		t_int32 width, t_int32 height, t_vector3f *vertices)
 {
-	map->m_vertices = safe_malloc(sizeof(t_vector4f) * width * height);
-	vector4f_convert3f(map->m_vertices, vertices, width * height);
+	t_vector4f	*vec4_vertices;
+
+	vec4_vertices = safe_malloc(sizeof(t_vector4f) * width * height);
+	vector4f_convert3f(vec4_vertices, vertices, width * height);
+	_map_set_vertices(map, width, height, vec4_vertices);
 }
 
 t_bool
@@ -35,5 +45,5 @@ t_bool
 			t_int32 width, t_int32 height, t_vector3f *vertices)
 {
 	_map_set_sizes(map, width, height);
-	_map_set_vertices(map, width, height, vertices);
+	map_set_vertices(map, width, height, vertices);
 }

@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 12:54:35 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/20 10:06:24 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/01/20 15:09:00 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,7 @@ typedef struct s_vector3f {
 	t_fl32	m_y;
 	t_fl32	m_z;
 }	t_vector3f;
+
+t_vector3f	vector3f(float x, float y, float z);
 
 #endif

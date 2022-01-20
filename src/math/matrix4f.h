@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 12:50:59 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/19 09:50:24 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/01/20 15:18:09 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,15 @@ void		matrix4f_clear(t_matrix4f *mat);
 
 t_matrix4f	matrix4f_mulm(const t_matrix4f *a, const t_matrix4f *b);
 
-t_vector4f	matri4f_mulv(const t_matrix4f *mat, const t_vector4f *vec);
+t_vector4f	matrix4f_mulv(const t_matrix4f *mat, const t_vector4f *vec);
+
+void		matrix4f_mulva(t_vector4f *out, const t_matrix4f *mat,
+				const t_vector4f *vec, t_size n);
 
 t_matrix4f	matrix4f_ortho(const t_ortho_settings *proj);
 
 t_matrix4f	matrix4f_transpose(const t_matrix4f *mat);
 
-t_matrix4f	matrix4f_rotation(const t_vector3f *axis, t_fl32 angle);
+t_matrix4f	matrix4f_rotation(t_vector3f axis, t_fl32 angle);
 
 #endif

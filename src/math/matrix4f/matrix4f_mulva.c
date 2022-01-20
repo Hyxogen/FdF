@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   renderer.h                                         :+:    :+:            */
+/*   matrix4f_mulva.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/01/19 13:07:37 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/20 14:59:57 by dmeijer       ########   odam.nl         */
+/*   Created: 2022/01/20 15:11:46 by dmeijer       #+#    #+#                 */
+/*   Updated: 2022/01/20 15:18:10 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDERER_H
-# define RENDERER_H
+#include "../matrix4f.h"
 
-# include "image_buffer.h"
-# include "math/vector2i.h"
-# include "math/vector4f.h"
-
-void	render_line(t_image_buffer *buffer,
-			t_vector2i start, t_vector2i end, t_color color);
-
-void	render_quads(t_image_buffer *buffer,
-			t_vector2i dimensions, const t_vector4f *points, t_color color);
-
-#endif
+void
+	matrix4f_mulva(t_vector4f *out, const t_matrix4f *mat,
+		const t_vector4f *vec, t_size n)
+{
+	while (n)
+	{
+		*out = matrix4f_mulv(mat, vec);
+		out++;
+		vec++;
+		n--;
+	}	
+}
