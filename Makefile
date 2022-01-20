@@ -22,16 +22,19 @@ SRC_FILES					:= fdf.c matrix4f_mulm.c matrix4f_mulv.c matrix4f_ortho.c \
 								safe_malloc.c \
 								assert.c vector4f_add.c \
 								vector4f_dot.c vector4f_muls.c \
+								vector2i_zero.c \
 								image_buffer_clear.c image_buffer_create.c \
 								image_buffer_destroy.c image_buffer_flush.c \
 								image_buffer_put_pixel.c image_buffer_put.c \
-								color_encode.c color_colors.c
+								color_encode.c color_colors.c \
+								renderer_render_line.c
 OBJ_FILES					:= $(addprefix $(INT_DIR)/,$(SRC_FILES:%.c=%.o))
 
 VPATH						:= $(SRC_DIR) $(SRC_DIR)/math $(SRC_DIR)/math/matrix4f \
 								$(SRC_DIR)/gfx/window $(SRC_DIR)/util \
 								$(SRC_DIR)/math/vector4f $(SRC_DIR)/gfx/image_buffer \
-								$(SRC_DIR)/gfx/color
+								$(SRC_DIR)/gfx/color $(SRC_DIR)/gfx/renderer \
+								$(SRC_DIR)/math/vector2i
 
 DEFINES						:=
 INCLUDE_DIRS				:= -I $(LIBFT_DIR)/include -I $(SRC_DIR)

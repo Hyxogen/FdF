@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   vector2i.h                                         :+:    :+:            */
+/*   vector2i_zero.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/01/19 09:58:23 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/20 08:39:45 by dmeijer       ########   odam.nl         */
+/*   Created: 2022/01/20 08:40:05 by dmeijer       #+#    #+#                 */
+/*   Updated: 2022/01/20 08:40:50 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECTOR2I_H
-# define VECTOR2I_H
+#include "../vector2i.h"
 
-# include "../util/types.h"
+t_vector2i
+	vector2i_zero(void)
+{
+	t_vector2i	zero;
 
-typedef struct s_vector2i {
-	t_int32	m_x;
-	t_int32	m_y;
-}	t_vector2i;
-
-t_vector2i	vector2i_zero(void);
-
-#endif
+	zero.m_x = 0;
+	zero.m_y = 0;
+	return (zero);
+}
