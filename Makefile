@@ -54,8 +54,8 @@ OSX_RELEASE_LINKSFLAGS		:= -fsanitize=address
 OSX_DISTR_LINKSFLAGS		:=
 
 #TODO fill this one out
-LINUX_ALWAYS_LINKFLAGS		:= -L$(LINUX_MLX_DIR) -lmlx -X11
-LINUX_ALWAYS_CFLAGS			:= -I$(LINUX_MLX_DIR)
+LINUX_ALWAYS_LINKFLAGS		:= -L$(LINUX_MLX_DIR) -lmlx -lX11 -lXext -lm -lz
+LINUX_ALWAYS_CFLAGS		:= -I $(LINUX_MLX_DIR)
 LINUX_ALWAYS_DEFINES		:= -DFDF_PLATFORM_LINUX
 LINUX_DEBUG_LINKFLAGS		:= -fsanitize=address
 LINUX_RELEASE_LINKSFLAGS	:= -fsanitize=address
@@ -113,7 +113,7 @@ else ifeq ($(config), distr_osx)
 	DEFINES			+= $(OSX_ALWAYS_DEFINES)
 	DEPENDENCIES	+= $(OSX_MLX_LIB)
 else
-	$(error "Invalid config $(config)")
+$(error "Invalid config $(config)")
 endif
 
 all: $(TARGET)
