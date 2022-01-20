@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/20 09:42:09 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/20 10:25:55 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/01/20 12:51:08 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ void
 		{
 			if ((x + 1) < dimensions.m_x)
 				_render_wireframe_part(buffer,
-					points[(x + 0) + (y + 0) * dimensions.m_y],
-					points[(x + 1) + (y + 0) * dimensions.m_y],
+					points[(x + 0) + (y + 0) * dimensions.m_x],
+					points[(x + 1) + (y + 0) * dimensions.m_x],
 					color);
 			if ((y + 1) < dimensions.m_y)
 				_render_wireframe_part(buffer,
-					points[(x + 0) + (y + 0) * dimensions.m_y],
-					points[(x + 0) + (y + 1) * dimensions.m_y],
+					points[(x + 0) + (y + 0) * dimensions.m_x],
+					points[(x + 0) + (y + 1) * dimensions.m_x],
 					color);
 			x++;
 		}

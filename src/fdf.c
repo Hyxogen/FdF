@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 15:34:26 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/20 11:41:55 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/01/20 12:51:58 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@
 
 t_vector4f	g_map[] =
 {
-	{250, 250, 0, 0}, {300, 250, 0 ,0},
-	{250, 300, 0 ,0}, {300, 300, 0, 0}
+	{250, 250, 0, 0}, {300, 250, 0 ,0}, {350, 250, 0, 0},
+	{250, 300, 0 ,0}, {300, 300, 0, 0}, {350, 300, 0, 0},
+	{250, 350, 0 ,0}, {300, 350, 0, 0}, {350, 350, 0, 0}
 };
 
 int
@@ -40,7 +41,7 @@ int
 	end.m_x = 499;
 	end.m_y = 499;
 	ib_clear(buffer);
-	render_wireframe(buffer, vector2i(2, 2), g_map, color_red());
+	render_wireframe(buffer, vector2i(3, 3), g_map, color_red());
 	ib_put(buffer, window, vector2i_zero());
 	while (TRUE)
 		window_update(window);
