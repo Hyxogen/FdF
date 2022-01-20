@@ -6,12 +6,13 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 12:49:01 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/19 09:50:39 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/01/20 16:29:00 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../matrix4f.h"
 
+/*This multiplication goes wrong*/
 t_matrix4f
 	_matrix4f_mulm(const t_matrix4f *a, const t_matrix4f *b) {
 	t_matrix4f	ret;
@@ -22,7 +23,7 @@ t_matrix4f
 	while (row < 4)
 	{
 		column = 0;
-		while (column < 0)
+		while (column < 4)
 		{
 			ret.m_elements[column + row * 4]
 				= vector4f_dot((t_vector4f *) &a->m_elements[0 + row * 4],
