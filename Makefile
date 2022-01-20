@@ -11,7 +11,6 @@ OSX_MLX_DIR					:= $(VENDOR_DIR)/minilibx-macos
 OSX_MLX_LIB					:= $(OSX_MLX_DIR)/libmlx.a
 LINUX_MLX_DIR				:= $(VENDOR_DIR)/minilibx-linux
 LINUX_MLX_LIB				:= $(LINUX_MLX_DIR)/libmlx_Linux.a
-
 DEPENDENCIES				:= $(LIBFT_LIB)
 
 SRC_DIR						:= ./src

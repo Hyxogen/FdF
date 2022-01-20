@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/19 15:27:25 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/20 12:46:43 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/01/20 13:58:08 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,13 @@ void
 		if (start.m_x < end.m_x)
 			_render_line_bresenham_lr(buffer, start, end, color);
 		else
-			_render_line_bresenham_lr(buffer, end, start, color_green());
+			_render_line_bresenham_lr(buffer, end, start, color);
 	}
 	else
 	{
 		if (start.m_y < end.m_y)
-			_render_line_bresenham_ud(buffer, start, end, color_blue());
+			_render_line_bresenham_ud(buffer, start, end, color);
 		else
-			_render_line_bresenham_ud(buffer, end, start, 0x00FF00FF);
+			_render_line_bresenham_ud(buffer, end, start, color);
 	}
 }
