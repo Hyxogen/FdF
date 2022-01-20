@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   renderer.h                                         :+:    :+:            */
+/*   vector2i_convert.c                                 :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/01/19 13:07:37 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/20 09:46:40 by dmeijer       ########   odam.nl         */
+/*   Created: 2022/01/20 09:58:24 by dmeijer       #+#    #+#                 */
+/*   Updated: 2022/01/20 09:59:49 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDERER_H
-# define RENDERER_H
+#include "../vector2i.h"
 
-# include "image_buffer.h"
-# include "math/vector2i.h"
-# include "math/vector4f.h"
-
-void	render_line(t_image_buffer *buffer,
-			t_vector2i start, t_vector2i end, t_color color);
-
-void	render_wireframe(t_image_buffer *buffer,
-			t_vector2i dimensions, const t_vector4f *points, t_color color);
-
-#endif
+void
+	vector2i_convert4f(t_vector2i *out,
+		const t_vector4f *points, t_size n)
+{
+	while (n)
+	{
+		out->m_x = (t_int32) points->m_x;
+		out->m_y = (t_int32) points->m_y;
+		out++;
+		points++;
+		n--;
+	}
+}

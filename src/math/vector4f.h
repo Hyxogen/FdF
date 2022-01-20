@@ -6,13 +6,14 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 12:54:35 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/20 09:18:29 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/01/20 09:32:00 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR4F_H
 # define VECTOR4F_H
 
+# include "vector3f.h"
 # include "../util/types.h"
 
 typedef struct s_vector4f {
@@ -28,5 +29,5 @@ t_vector4f	vector4f_muls(const t_vector4f *a, t_fl32 scalar);
 
 t_fl32		vector4f_dot(const t_vector4f *a, const t_vector4f *b);
 
-void		vector4f_convert3f(t_vector4f *out, t_vector3f *points, size_t n);
+void		vector4f_convert3f(t_vector4f *out, t_vector3f *points, t_size n);
 #endif

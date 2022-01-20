@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   renderer.h                                         :+:    :+:            */
+/*   vector2i_constructor.c                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/01/19 13:07:37 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/20 09:46:40 by dmeijer       ########   odam.nl         */
+/*   Created: 2022/01/20 10:05:07 by dmeijer       #+#    #+#                 */
+/*   Updated: 2022/01/20 10:05:54 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDERER_H
-# define RENDERER_H
+#include "../vector2i.h"
 
-# include "image_buffer.h"
-# include "math/vector2i.h"
-# include "math/vector4f.h"
+t_vector2i
+	vector2i(t_int32 x, t_int32 y)
+{
+	t_vector2i	vector;
 
-void	render_line(t_image_buffer *buffer,
-			t_vector2i start, t_vector2i end, t_color color);
-
-void	render_wireframe(t_image_buffer *buffer,
-			t_vector2i dimensions, const t_vector4f *points, t_color color);
-
-#endif
+	vector.m_x = x;
+	vector.m_y = y;
+	return (vector);
+}

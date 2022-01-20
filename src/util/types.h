@@ -6,13 +6,14 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/19 09:23:32 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/19 09:52:31 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/01/20 09:32:29 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPES_H
 # define TYPES_H
 # include <stdint.h>
+# include <sys/types.h>
 
 typedef int8_t		t_int8;
 typedef uint8_t		t_uint8;
@@ -30,4 +31,6 @@ typedef float		t_fl32;
 typedef double		t_fl64;
 
 typedef t_uint8		t_byte;
+
+typedef size_t		t_size;
 #endif

@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   renderer.h                                         :+:    :+:            */
+/*   vector3f_convert.c                                 :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/01/19 13:07:37 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/20 09:46:40 by dmeijer       ########   odam.nl         */
+/*   Created: 2022/01/20 09:30:53 by dmeijer       #+#    #+#                 */
+/*   Updated: 2022/01/20 09:37:53 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDERER_H
-# define RENDERER_H
+#include "../vector4f.h"
 
-# include "image_buffer.h"
-# include "math/vector2i.h"
-# include "math/vector4f.h"
-
-void	render_line(t_image_buffer *buffer,
-			t_vector2i start, t_vector2i end, t_color color);
-
-void	render_wireframe(t_image_buffer *buffer,
-			t_vector2i dimensions, const t_vector4f *points, t_color color);
-
-#endif
+void
+	vector4f_convert3f(t_vector4f *out, t_vector3f *points, t_size n)
+{
+	while (n)
+	{
+		*out = *((t_vector4f *) points);
+		out->m_w = 0.0f;
+		out++;
+		points++;
+		n--;
+	}
+}
