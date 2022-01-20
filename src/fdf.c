@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 15:34:26 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/20 15:27:43 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/01/20 16:32:46 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,37 +18,46 @@
 #include "math/matrix4f.h"
 #include "map/map.h"
 #include "util/mem_utils.h"
+#include <ft_string.h>
 #include "math.h"
 #include "mlx.h"
 
 t_vector4f	g_map[] =
 {
-	{250, 250, 250, 0}, {300, 250, 250 ,0}, {350, 250, 250, 0},
-	{250, 250, 300 ,0}, {300, 250, 300, 0}, {350, 250, 300, 0},
-	{250, 250, 350 ,0}, {300, 250, 350, 0}, {350, 250, 350, 0}
+	{0, 50, 250,  1}, {50, 50, 250,  1}, {100, 50, 250,  1},
+	{0, 100, 300 ,1}, {50, 100, 300, 1}, {100, 100, 300, 1},
+	{0, 150, 350 ,1}, {50, 150, 350, 1}, {100, 150, 350, 1}
 };
 
-void
-	do_test(t_image_buffer *buffer)
+int
+	temp_loop(void *param)
 {
-	t_ortho_settings	settings;
-	t_matrix4f			proj;
-	t_matrix4f			rot;
-	t_vector4f			*transformed;
-	t_vector4f			*transformed2;
+	static t_fl32	a = 0.0f;
+	t_window		*window;
+	t_matrix4f		trans;
+	t_matrix4f		rot;
+	t_matrix4f		effect;
+	t_vector4f		*transformed;
+	t_vector3f		center;
+	t_image_buffer	*buffer;
 
-	settings.m_far = 10.0f;
-	settings.m_near = 1.0f;
-	settings.m_left = 5.0f;
-	settings.m_right = 5.0f;
-	settings.m_top = 5.0f;
-	settings.m_bottom = 5.0f;
+	center = vector3f(50, 100, 300);
+	window = param;
+	buffer = ib_create(window->m_mlx_handle, window->m_width, window->m_height);
+	rot = matrix4f_rotation(vector3f(0, 0, 1), M_1_PI / 2.0f);
+	trans = matrix4f_translation(vector3f_inverse(&center));
+	
+	effect = matrix4f_mulm(&trans, &rot);
+	trans = matrix4f_translation(center);
+	effect = matrix4f_mulm(&effect, &trans);
+
+
 	transformed = safe_malloc(sizeof(t_vector4f) * 3 * 3);
-	transformed2 = safe_malloc(sizeof(t_vector4f) * 3 * 3);
-	proj = matrix4f_ortho(&settings);
-	rot = matrix4f_rotation(vector3f(1, 0, 0), M_1_PI / 2.0f);
-	matrix4f_mulva(transformed, &rot, g_map, 3 * 3);
+	matrix4f_mulva(transformed, &effect, g_map, 3 * 3);
 	render_quads(buffer, vector2i(3, 3), transformed, color_red());
+	ib_flush(buffer, window, vector2i(0, 0));
+	a += 0.1f;
+	return (FALSE);
 }
 
 int
@@ -69,8 +78,9 @@ int
 	end.m_y = 499;
 	ib_clear(buffer);
 	/*render_quads(buffer, vector2i(3, 3), g_map, color_red());*/
-	do_test(buffer);
 	ib_put(buffer, window, vector2i_zero());
+	mlx_loop_hook(mlx_handle, temp_loop, window);
+	mlx_loop(mlx_handle);
 	while (TRUE)
 		window_update(window);
 	window_destroy(window, TRUE);

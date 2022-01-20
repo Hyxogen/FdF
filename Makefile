@@ -17,13 +17,14 @@ SRC_DIR						:= ./src
 
 SRC_FILES					:= fdf.c matrix4f_mulm.c matrix4f_mulv.c matrix4f_ortho.c \
 								matrix4f_transpose.c matrix4f_clear.c matrix4f_rotation.c \
-								matrix4f_mulva.c \
+								matrix4f_mulva.c matrix4f_identity.c \
+								matrix4f_translation.c \
 								window_destroy.c window_init.c window_update.c \
 								safe_malloc.c \
 								assert.c vector4f_add.c \
 								vector4f_dot.c vector4f_muls.c vector4f_convert.c \
 								vector2i_zero.c vector2i_convert.c vector2i_constructor.c \
-								vector3f_constructor.c \
+								vector3f_constructor.c vector3f_inverse.c \
 								image_buffer_clear.c image_buffer_create.c \
 								image_buffer_destroy.c image_buffer_flush.c \
 								image_buffer_put_pixel.c image_buffer_put.c \

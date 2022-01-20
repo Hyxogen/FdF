@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 12:55:39 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/20 15:07:22 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/01/20 15:43:05 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_matrix4f
 	out.m_elements[2 + 0 * 4] = axis.m_x * axis.m_z * omc + axis.m_y * s;
 	out.m_elements[2 + 1 * 4] = axis.m_y * axis.m_z * omc + axis.m_x * s;
 	out.m_elements[2 + 2 * 4] = axis.m_z * axis.m_z * omc + c;
+	out.m_elements[3 + 3 * 4] = 1.0f;
 	return (out);
 }
 

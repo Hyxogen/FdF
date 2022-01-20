@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   matrix4f_mulv.c                                    :+:    :+:            */
+/*   matrix4f_identity.c                                :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/01/18 12:49:21 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/20 15:47:38 by dmeijer       ########   odam.nl         */
+/*   Created: 2022/01/20 15:59:44 by dmeijer       #+#    #+#                 */
+/*   Updated: 2022/01/20 16:01:46 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../matrix4f.h"
 
-t_vector4f
-	matrix4f_mulv(const t_matrix4f *mat, const t_vector4f *vec)
+void	
+	matrix4f_make_identiy(t_matrix4f *mat)
 {
-	t_vector4f	mul_vec;
-	t_fl32		*mul_elements;
-	t_int32		row;
+	matrix4f_clear(mat);
+	mat->m_elements[0 + 0 * 4] = 1.0f;
+	mat->m_elements[1 + 1 * 4] = 1.0f;
+	mat->m_elements[2 + 2 * 4] = 1.0f;
+	mat->m_elements[3 + 3 * 4] = 1.0f;
+}
 
-	row = 0;
-	mul_elements = (t_fl32 *) &mul_vec;
-	while (row < 4)
-	{
-		mul_elements[row]
-			= vector4f_dot((t_vector4f *) &mat->m_elements[0 + row * 4], vec);
-		row++;
-	}
-	return (mul_vec);
+t_matrix4f	matrix4f_identity(void)
+{
+	t_matrix4f	identity_matrix;
+
+	matrix4f_make_identiy(&identity_matrix);
+	return (identity_matrix);
 }

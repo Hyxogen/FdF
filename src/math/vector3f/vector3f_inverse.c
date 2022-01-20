@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   matrix4f_mulv.c                                    :+:    :+:            */
+/*   vector3f_inverse.c                                 :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/01/18 12:49:21 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/20 15:47:38 by dmeijer       ########   odam.nl         */
+/*   Created: 2022/01/20 16:13:23 by dmeijer       #+#    #+#                 */
+/*   Updated: 2022/01/20 16:14:29 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../matrix4f.h"
+#include "../vector3f.h"
 
-t_vector4f
-	matrix4f_mulv(const t_matrix4f *mat, const t_vector4f *vec)
+t_vector3f
+	vector3f_inverse(const t_vector3f *vector)
 {
-	t_vector4f	mul_vec;
-	t_fl32		*mul_elements;
-	t_int32		row;
+	t_vector3f	inverse;
 
-	row = 0;
-	mul_elements = (t_fl32 *) &mul_vec;
-	while (row < 4)
-	{
-		mul_elements[row]
-			= vector4f_dot((t_vector4f *) &mat->m_elements[0 + row * 4], vec);
-		row++;
-	}
-	return (mul_vec);
+	inverse.m_x = -vector->m_x;
+	inverse.m_y = -vector->m_y;
+	inverse.m_z = -vector->m_z;
+	return (inverse);
 }

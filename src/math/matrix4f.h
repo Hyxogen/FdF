@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 12:50:59 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/20 15:18:09 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/01/20 15:58:36 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ t_matrix4f	matrix4f_ortho(const t_ortho_settings *proj);
 
 t_matrix4f	matrix4f_transpose(const t_matrix4f *mat);
 
+void		matrix4f_make_identiy(t_matrix4f *mat);
+t_matrix4f	matrix4f_identity(void);
 t_matrix4f	matrix4f_rotation(t_vector3f axis, t_fl32 angle);
+t_matrix4f	matrix4f_translation(t_vector3f vec);
 
 #endif
