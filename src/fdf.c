@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 15:34:26 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/20 12:51:58 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/01/20 12:53:07 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int
 	end.m_x = 499;
 	end.m_y = 499;
 	ib_clear(buffer);
-	render_wireframe(buffer, vector2i(3, 3), g_map, color_red());
+	render_quad(buffer, vector2i(3, 3), g_map, color_red());
 	ib_put(buffer, window, vector2i_zero());
 	while (TRUE)
 		window_update(window);

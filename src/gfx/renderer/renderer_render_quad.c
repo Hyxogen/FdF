@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   renderer_render_wireframe.c                        :+:    :+:            */
+/*   renderer_render_quad.c                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
@@ -14,7 +14,7 @@
 
 /*TODO pass from and to by pointer*/
 void
-	_render_wireframe_part(t_image_buffer *buffer,
+	_render_quad_part(t_image_buffer *buffer,
 		t_vector4f from, t_vector4f to, t_color color)
 {
 	t_vector2i	i_from;
@@ -26,7 +26,7 @@ void
 }
 
 void
-	render_wireframe(t_image_buffer *buffer,
+	render_quad(t_image_buffer *buffer,
 		t_vector2i dimensions, const t_vector4f *points, t_color color)
 {
 	t_int32		x;
@@ -39,12 +39,12 @@ void
 		while (x < dimensions.m_x)
 		{
 			if ((x + 1) < dimensions.m_x)
-				_render_wireframe_part(buffer,
+				_render_quad_part(buffer,
 					points[(x + 0) + (y + 0) * dimensions.m_x],
 					points[(x + 1) + (y + 0) * dimensions.m_x],
 					color);
 			if ((y + 1) < dimensions.m_y)
-				_render_wireframe_part(buffer,
+				_render_quad_part(buffer,
 					points[(x + 0) + (y + 0) * dimensions.m_x],
 					points[(x + 0) + (y + 1) * dimensions.m_x],
 					color);
