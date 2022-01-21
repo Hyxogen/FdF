@@ -19,7 +19,7 @@ t_matrix4f
 {
 	t_matrix4f	out;
 
-	ft_memset(&out, 0, sizeof(t_matrix4f));
+	matrix4f_make_identiy(&out);
 	out.m_elements[0 + 0 * 4] = axis.m_x * axis.m_x * omc + c;
 	out.m_elements[0 + 1 * 4] = axis.m_x * axis.m_y * omc + axis.m_z * s;
 	out.m_elements[0 + 2 * 4] = axis.m_x * axis.m_z * omc + axis.m_y * s;
@@ -29,7 +29,6 @@ t_matrix4f
 	out.m_elements[2 + 0 * 4] = axis.m_x * axis.m_z * omc + axis.m_y * s;
 	out.m_elements[2 + 1 * 4] = axis.m_y * axis.m_z * omc + axis.m_x * s;
 	out.m_elements[2 + 2 * 4] = axis.m_z * axis.m_z * omc + c;
-	out.m_elements[3 + 3 * 4] = 1.0f;
 	return (out);
 }
 

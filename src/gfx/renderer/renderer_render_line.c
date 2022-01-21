@@ -45,7 +45,7 @@ void
 
 void
 	_render_line_bresenham_ud(t_image_buffer *buffer,
-		t_vector2i left, t_vector2i right, t_color color)
+		t_vector2i down, t_vector2i up, t_color color)
 {
 	t_int32		dx;
 	t_int32		dy;
@@ -53,13 +53,13 @@ void
 	t_int32		error;
 	t_vector2i	point;
 
-	point = left;
-	dx = right.m_x - left.m_x;
-	dy = right.m_y - left.m_y;
+	point = down;
+	dx = up.m_x - down.m_x;
+	dy = up.m_y - down.m_y;
 	error = 0;
-	x_slope = 1 + ((dy < 0) * -2);
-	dy *= 1 + ((dx < 0) * -2);
-	while (point.m_y <= right.m_y)
+	x_slope = 1 + ((dx < 0) * -2);
+	dx *= 1 + ((dx < 0) * -2);
+	while (point.m_y <= up.m_y)
 	{
 		ib_put_pixelv(buffer, point, color);
 		if (error > 0)
@@ -81,13 +81,13 @@ void
 		if (start.m_x < end.m_x)
 			_render_line_bresenham_lr(buffer, start, end, color);
 		else
-			_render_line_bresenham_lr(buffer, end, start, color);
+			_render_line_bresenham_lr(buffer, end, start, color_blue());
 	}
 	else
 	{
 		if (start.m_y < end.m_y)
-			_render_line_bresenham_ud(buffer, start, end, color);
+			_render_line_bresenham_ud(buffer, start, end, color_green());
 		else
-			_render_line_bresenham_ud(buffer, end, start, color);
+			_render_line_bresenham_ud(buffer, end, start, 0x00FF00FF);
 	}
 }
