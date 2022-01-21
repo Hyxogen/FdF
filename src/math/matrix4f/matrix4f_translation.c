@@ -19,7 +19,7 @@ t_matrix4f
 
 	matrix4f_make_identiy(&translation_mat);
 	translation_mat.m_elements[3 + 0 * 4] = vec.m_x;
-	translation_mat.m_elements[3 + 1 * 4] = vec.m_x;
-	translation_mat.m_elements[3 + 2 * 4] = vec.m_x;
+	translation_mat.m_elements[3 + 1 * 4] = vec.m_y;
+	translation_mat.m_elements[3 + 2 * 4] = vec.m_z;
 	return (translation_mat);
 }
