@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/24 10:14:36 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/24 10:33:03 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/01/24 11:33:46 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <ft_ctype.h>
 #include <ft_stdbool.h>
 #include <ft_stdlib.h>
+#include <stdio.h>
 
 t_bool
 	_parser_is_valid_entry(int c)
@@ -31,8 +32,10 @@ t_int32
 		map_str++;
 		len--;
 	}
-	if (*map_str == '\0' || *map_str == '\n')
+	if (*map_str == '\0')
 		return (0);
+	if (*map_str == '\n')
+		return (1);
 	while (len && *map_str == ' ')
 	{
 		map_str++;
@@ -49,7 +52,7 @@ t_int32
 	new_line = ft_memchr(map_str, '\n', len);
 	if (new_line == NULL)
 		return (len);
-	return (new_line - map_str);
+	return (len / (new_line - map_str));
 }
 
 void
@@ -58,6 +61,7 @@ void
 	while (len)
 	{
 		*out = ft_atoi(map_str);
+		printf("n:%zu val%d\n", len, *out);
 		while (_parser_is_valid_entry(*map_str))
 		{
 			map_str++;
