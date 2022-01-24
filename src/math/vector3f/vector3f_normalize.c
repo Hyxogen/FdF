@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   vector3f.h                                         :+:    :+:            */
+/*   vector3f_normalize.c                               :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/01/18 12:54:35 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/24 08:00:51 by dmeijer       ########   odam.nl         */
+/*   Created: 2022/01/24 08:01:01 by dmeijer       #+#    #+#                 */
+/*   Updated: 2022/01/24 08:02:56 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECTOR3F_H
-# define VECTOR3F_H
+#include "../vector3f.h"
 
-# include "util/types.h"
+t_vector3f
+	vector3f_normalize(t_vector3f vector)
+{
+	t_fl32	magnitude;
 
-typedef struct s_vector3f {
-	t_fl32	m_x;
-	t_fl32	m_y;
-	t_fl32	m_z;
-}	t_vector3f;
-
-t_vector3f	vector3f(float x, float y, float z);
-
-t_vector3f	vector3f_inverse(const t_vector3f *vector);
-
-t_fl32		vector3f_magnitude(const t_vector3f *vector);
-
-t_vector3f	vector3f_normalize(t_vector3f vector);
-
-#endif
+	magnitude = vector3f_magnitude(&vector);
+	if (magnitude == 0)
+		return (vector);
+	vector.m_x /= magnitude;
+	vector.m_y /= magnitude;
+	vector.m_z /= magnitude;
+	return (vector);
+}
