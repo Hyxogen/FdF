@@ -5,7 +5,6 @@ TEST_TARGET					:= fdf_tests
 DEPEND_DIR 					:= ./Dependencies
 VENDOR_DIR 					:= ./Vendor
 INT_DIR 					:= ./obj
-
 LIBFT_DIR					:= $(DEPEND_DIR)/libft
 LIBFT_LIB					:= $(LIBFT_DIR)/libft.a
 
@@ -77,6 +76,7 @@ LINUX_RELEASE_LINKSFLAGS	:= -fsanitize=address
 LINUX_DISTR_LINKSFLAGS		:=
 
 ALWAYS_DEBUG_CFLAGS			:= -g3 -O0 -fsanitize=address
+ALWAYS_DEBUG_CXXFLAGS			:= -g3 -O0 -fsanitize=address
 ALWAYS_DEBUG_LINKFLAGS		:= -fsanitize=address -fsanitize=undefined
 ALWAYS_DEBUG_DEFINES		:= -DFDF_DEBUG
 
@@ -99,6 +99,7 @@ endif
 
 ifeq ($(config), debug_linux)
 	ALL_CFLAGS		+= $(ALWAYS_DEBUG_CFLAGS) $(LINUX_ALWAYS_CFLAGS)
+	ALL_CXXFLAGS		+= $(ALWAYS_DEBUG_CXXFLAGS)
 	ALL_LINKFLAGS	+= $(ALWAYS_DEBUG_LINKFLAGS) $(LINUX_ALWAYS_LINKFLAGS) $(LINUX_DEBUG_LINKFLAGS)
 	DEFINES			+= $(LINUX_ALWAYS_DEFINES)
 	DEPENDENCIES	+= $(LINUX_MLX_LIB)
@@ -133,8 +134,8 @@ endif
 
 all: $(TARGET)
 
-test: SRC_FILES := $(subst $(SRC_FILES),fdf.c,)
-test: OBJ_FILES := $(subst $(OBJ_FILES),fdf.o,)
+test: SRC_FILES := $(filter-out fdf.c,$(SRC_FILES))
+test: OBJ_FILES := $(filter-out $(INT_DIR)/fdf.o,$(OBJ_FILES))
 test: $(TEST_TARGET)
 
 $(TARGET): $(OBJ_FILES) $(DEPENDENCIES)
@@ -152,7 +153,6 @@ $(INT_DIR)/%.o: %.cpp
 	$(SILENT)$(CXX) $(ALL_CXXFLAGS) -c $< -o $@
 
 $(INT_DIR)/%.o: %.c
-	echo $(OBJ_FILES)
 	$(SILENT)echo $(notdir $<)
 	$(SILENT)mkdir -p $(INT_DIR)
 	$(SILENT)$(CC) $(ALL_CFLAGS) -c $< -o $@
