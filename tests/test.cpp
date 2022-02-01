@@ -34,6 +34,17 @@ SIMPLE_TEST(nonsquare_map) {
 	free(actual);
 }
 
+SIMPLE_TEST(test102_map) {
+	int width, height;
+	const char *map_str = "1 0 0 -1 -1 0 1 1 0 0\n-1 0 0 0 1 0 0 0 0 0\n-1 1 0 0 -1 1 0 0 0 1\n1 -1 0 1 1 -1 0 0 -1 0\n1 -1 -1 0 -1 0 0 0 -1 -1\n-1 1 0 1 1 0 1 0 0 0\n0 -1 -1 0 0 1 0 0 0 1\n0 0 0 0 1 0 -1 0 0 0\n-1 -1 0 1 -1 0 1 0 0 1\n0 0 1 -1 0 -1 0 0 0 0\n";
+	const int expected[] = {1, 0, 0, -1, -1, 0, 1, 1, 0, 0, -1, 0, 0, 0, 1, 0, 0, 0, 0, 0, -1, 1, 0, 0, -1, 1, 0, 0, 0, 1, 1, -1, 0, 1, 1, -1, 0, 0, -1, 0, 1, -1, -1, 0, -1, 0, 0, 0, -1, -1, -1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, -1, -1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, -1, -1, 0, 1, -1, 0, 1, 0, 0, 1, 0, 0, 1, -1, 0, -1, 0, 0, 0, 0};
+	int *actual = parser_parse_map(map_str, std::strlen(map_str), &width, &height);
+	ASSERT_EQUAL(width, 10);
+	ASSERT_EQUAL(height, 10);
+	ASSERT_EQUAL_ARRAY(expected, actual, 10 * 10);
+	free(actual);
+}
+
 int main(int argc, char **argv) {
 	SIMPLE_INIT(argc, argv);
 	SIMPLE_RUN_ALL_TESTS();

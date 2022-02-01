@@ -47,7 +47,7 @@ t_map
 	t_vector3f	*vertices;
 	t_map		*map;
 
-	vertices = _map_convert_heights(width, height, heights, 50);
+	vertices = _map_convert_heights(width, height, heights, 10);
 	map = safe_malloc(sizeof(t_map));
 	map_init(map, width, height, vertices);
 	return (map);

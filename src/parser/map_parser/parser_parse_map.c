@@ -32,15 +32,15 @@ t_int32
 		map_str++;
 		len--;
 	}
-	if (*map_str == '\0')
-		return (0);
-	if (*map_str == '\n')
-		return (1);
 	while (len && *map_str == ' ')
 	{
 		map_str++;
 		len--;
 	}
+	if (*map_str == '\0')
+		return (0);
+	if (*map_str == '\n')
+		return (1);
 	return (_parser_get_width(map_str, len) + 1);
 }
 
