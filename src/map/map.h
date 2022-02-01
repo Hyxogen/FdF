@@ -32,4 +32,6 @@ t_bool	map_init(t_map *map,
 			t_int32 width, t_int32 height, t_vector3f *vertices);
 t_map	*map_create(t_int32 width, t_int32 height, t_int32 *heights);
 
+void	map_destroy(t_map *map);
+
 #endif

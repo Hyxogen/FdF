@@ -17,6 +17,7 @@
 #include <ft_stdbool.h>
 #include <ft_stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 t_bool
 	_parser_is_valid_entry(int c)
@@ -64,7 +65,7 @@ t_int32
 			len - ((new_line - map_str) + 1)));
 }
 
-void
+t_bool
 	_parser_fill(t_int32 *out, const char *map_str, t_size len)
 {
 	while (len)
@@ -86,8 +87,11 @@ void
 			map_str++;
 			len--;
 		}
+		if (len && *map_str == ',')
+			return (FALSE);
 		out++;
 	}
+	return (TRUE);
 }
 
 t_int32
@@ -101,6 +105,10 @@ t_int32
 	if (*width * *height == 0)
 		return (NULL);
 	heights = safe_malloc(sizeof(t_int32) * *width * *height);
-	_parser_fill(heights, map_str, len);
+	if (!_parser_fill(heights, map_str, len))
+	{
+		free(heights);
+		return (NULL);
+	}
 	return (heights);
 }
