@@ -37,7 +37,7 @@ SRC_FILES					:= fdf.c matrix4f_mulm.c matrix4f_mulv.c matrix4f_ortho.c \
 								image_buffer_put_pixel.c image_buffer_put.c \
 								color_encode.c color_colors.c \
 								renderer_render_line.c renderer_render_quads.c \
-								renderer_render_quads_ndc.c \
+								renderer_render_quads_ndc.c renderer_render_map.c \
 								parser_parse_map.c \
 								map_create.c map_init.c
 OBJ_FILES					:= $(addprefix $(INT_DIR)/,$(SRC_FILES:%.c=%.o))

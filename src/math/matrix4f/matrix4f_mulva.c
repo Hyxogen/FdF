@@ -24,3 +24,15 @@ void
 		n--;
 	}	
 }
+
+void
+	matrix4f_mulvai(const t_matrix4f *mat,
+		t_vector4f *vec, t_size n)
+{
+	while (n)
+	{
+		*vec = matrix4f_mulv(mat, vec);
+		vec++;
+		n--;
+	}	
+}

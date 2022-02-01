@@ -27,6 +27,11 @@ t_bool
 t_int32
 	_parser_get_width(const char *map_str, t_size len)
 {
+	while (len && *map_str == ' ')
+	{
+		map_str++;
+		len--;
+	}
 	while (len && _parser_is_valid_entry(*map_str))
 	{
 		map_str++;

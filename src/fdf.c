@@ -131,7 +131,8 @@ int
 	matrix4f_mulva(transformed, &effect, map_vertices, width * height);
 	norm_trans(transformed, width * height);
 	vector2f_convert4f(ndc_points, transformed, width * height);
-	render_quads_ndc(buffer, vector2i(width, height), ndc_points, color_white());	
+	render_map(buffer, &effect, g_loaded_map, color_white());
+/*	render_quads_ndc(buffer, vector2i(width, height), ndc_points, color_white());*/	
 /*	render_quads(buffer, vector2i(width, height), transformed, color_white());*/
 	ib_put(buffer, window, vector2i_zero());
 	(void)a;

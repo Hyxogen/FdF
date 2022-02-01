@@ -37,6 +37,8 @@ t_vector4f	matrix4f_mulv(const t_matrix4f *mat, const t_vector4f *vec);
 
 void		matrix4f_mulva(t_vector4f *out, const t_matrix4f *mat,
 				const t_vector4f *vec, t_size n);
+void		matrix4f_mulvai(const t_matrix4f *mat, t_vector4f *vec,
+				t_size n);
 
 t_matrix4f	matrix4f_ortho(const t_ortho_settings *proj);
 
