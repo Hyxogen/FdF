@@ -49,10 +49,14 @@ t_int32
 {
 	char	*new_line;
 
+	if (len == 0)
+		return (0);
 	new_line = ft_memchr(map_str, '\n', len);
 	if (new_line == NULL)
-		return (len);
-	return (len / (new_line - map_str));
+		return (0);
+	return (1 + _parser_get_height(
+			new_line + 1,
+			len - ((new_line - map_str) + 1)));
 }
 
 void
@@ -60,13 +64,19 @@ void
 {
 	while (len)
 	{
-		*out = ft_atoi(map_str);
-		while (_parser_is_valid_entry(*map_str))
+		while (len && (*map_str == ' ' || *map_str == '\n'))
 		{
 			map_str++;
 			len--;
 		}
-		while (*map_str == ' ' || *map_str == '\n')
+		if (len)
+			*out = ft_atoi(map_str);
+		while (len && _parser_is_valid_entry(*map_str))
+		{
+			map_str++;
+			len--;
+		}
+		while (len && (*map_str == ' ' || *map_str == '\n'))
 		{
 			map_str++;
 			len--;

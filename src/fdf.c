@@ -12,14 +12,17 @@
 
 #include "math/vector2i.h"
 #define __USE_MISC
+#include <fcntl.h>
 #include <stdio.h>
 #include "gfx/window.h"
 #include "gfx/image_buffer.h"
 #include "gfx/renderer.h"
 #include "util/assert.h"
+#include "parser/map_parser.h"
 #include "math/matrix4f.h"
 #include "map/map.h"
 #include "util/mem_utils.h"
+#include "util/file_utils.h"
 #include <ft_string.h>
 #include <math.h>
 #include <mlx.h>
@@ -61,6 +64,8 @@ t_int32	g_map[] = {
 	0, 0, 0
 };
 
+t_map	*g_loaded_map;
+
 /*
 static const t_fl32 g_iso_yz = cos(M_PI_4);
 static const t_fl32 g_iso_xz = cos(M_PI_4) * sin(M_PI / 6.0f);
@@ -80,35 +85,51 @@ int
 	t_vector4f				*transformed;
 	t_vector2f				*ndc_points;
 	t_vector4f				*map_vertices;
-	t_map					*map;
+	t_int32					width, height;
 
-	map = map_create(3, 3, g_map);
-	map_vertices = map->m_vertices;
-	rot = matrix4f_rotation(vector3f_normalize(vector3f(0.0f, 1.0f, 0.0f)), a);
+	width = g_loaded_map->m_width;
+	height = g_loaded_map->m_height;
+	map_vertices = g_loaded_map->m_vertices;
+	rot = matrix4f_rotation(vector3f_normalize(vector3f(1.0f, 1.0f, 0.0f)), a);
 	window = param;
 	if (!buffer)
 		buffer = ib_create(window->m_mlx_handle, window->m_width, window->m_height);
 	ib_clear(buffer);
-	trans = matrix4f_translation(vector3f(250.0f, 250.0f, 0.0f));
+	trans = matrix4f_translation(vector3f(250.0f + a, 250.0f + a, 0.0f));
 	effect = matrix4f_mulm(&trans, &rot);
 
-	transformed = safe_malloc(sizeof(t_vector4f) * 3 * 3);
-	ndc_points = safe_malloc(sizeof(t_vector2f) * 3 * 3);
-	matrix4f_mulva(transformed, &effect, map_vertices, 3 * 3);
-	vector2f_convert4f(ndc_points, transformed, 3 * 3);
-	render_quads(buffer, vector2i(3, 3), transformed, color_white());
+	transformed = safe_malloc(sizeof(t_vector4f) * width * height);
+	ndc_points = safe_malloc(sizeof(t_vector2f) * width * height);
+	matrix4f_mulva(transformed, &effect, map_vertices, width * height);
+	vector2f_convert4f(ndc_points, transformed, width * height);
+	render_quads(buffer, vector2i(width, height), transformed, color_white());
 	ib_put(buffer, window, vector2i_zero());
 	(void)a;
-	a += 0.0001f;
+	a += 0.001f;
 	free(ndc_points);
 	free(transformed);
-	free(map);
-	free(map_vertices);
 	return (FALSE);
 }
+void	
+	load_map(int argc, char **argv)
+{
+	char	*file_contents;
+	t_size	file_size;
+	t_int32	width;
+	t_int32	height;
+	t_int32	*heights;
+
+	(void)argc;
+	file_readall(argv[1], &file_contents, &file_size);
+	heights = parser_parse_map(file_contents, file_size, &width, &height);
+	g_loaded_map = map_create(width, height, heights);
+	free(file_contents);
+	free(heights);
+}
+
 
 int
-	main(void)
+	main(int argc, char **argv)
 {
 	void			*mlx_handle;
 	t_window		*window;
@@ -116,6 +137,7 @@ int
 	t_vector2i		start;
 	t_vector2i		end;
 
+	load_map(argc, argv);
 	mlx_handle = mlx_init();
 	window = window_create(mlx_handle, "Hello World", 500, 500);
 	debug_assert((buffer = ib_create(mlx_handle, 500, 500)) != NULL);
