@@ -12,6 +12,7 @@
 
 #include "math/vector2i.h"
 #define __USE_MISC
+#define _ISO99_SOURCE
 #include <fcntl.h>
 #include <stdio.h>
 #include "gfx/window.h"
@@ -24,6 +25,7 @@
 #include "util/mem_utils.h"
 #include "util/file_utils.h"
 #include <ft_string.h>
+#include <ft_stdlib.h>
 #include <math.h>
 #include <mlx.h>
 #include <unistd.h>
@@ -73,6 +75,32 @@ static const t_fl32 g_iso_xz = cos(M_PI_4) * sin(M_PI / 6.0f);
 cos(pi/4) rotation yz
 cos(pi/4)*sin(π/6) rotation xz
 */
+
+void
+	norm_trans(t_vector4f *vertices, t_int32 count)
+{
+	t_matrix4f scale;
+	t_vector4f *result;
+	t_int32	index;
+	t_fl32	largest;
+
+	largest = vertices->m_x;
+	result = safe_malloc(sizeof(t_vector4f) * count);
+	index = 0;
+	while (index < count)
+	{
+		if (ft_abs(vertices[index].m_x) > largest)
+			largest = ft_abs(vertices[index].m_x);
+		if (ft_abs(vertices[index].m_y) > largest)
+			largest = ft_abs(vertices[index].m_y);
+		index++;
+	}
+	scale = matrix4f_usscale(1.0f / largest);
+	matrix4f_mulva(result, &scale, vertices, count);
+	ft_memcpy(vertices, result, sizeof(t_vector4f) * count);
+	free(result);
+}
+
 int
 	temp_loop(void *param)
 {
@@ -95,14 +123,16 @@ int
 	if (!buffer)
 		buffer = ib_create(window->m_mlx_handle, window->m_width, window->m_height);
 	ib_clear(buffer);
-	trans = matrix4f_translation(vector3f(250.0f + a, 250.0f + a, 0.0f));
+	trans = matrix4f_identity();
 	effect = matrix4f_mulm(&trans, &rot);
 
 	transformed = safe_malloc(sizeof(t_vector4f) * width * height);
 	ndc_points = safe_malloc(sizeof(t_vector2f) * width * height);
 	matrix4f_mulva(transformed, &effect, map_vertices, width * height);
+	norm_trans(transformed, width * height);
 	vector2f_convert4f(ndc_points, transformed, width * height);
-	render_quads(buffer, vector2i(width, height), transformed, color_white());
+	render_quads_ndc(buffer, vector2i(width, height), ndc_points, color_white());	
+/*	render_quads(buffer, vector2i(width, height), transformed, color_white());*/
 	ib_put(buffer, window, vector2i_zero());
 	(void)a;
 	a += 0.001f;

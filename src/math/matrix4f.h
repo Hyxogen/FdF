@@ -46,5 +46,8 @@ void		matrix4f_make_identiy(t_matrix4f *mat);
 t_matrix4f	matrix4f_identity(void);
 t_matrix4f	matrix4f_rotation(t_vector3f axis, t_fl32 angle);
 t_matrix4f	matrix4f_translation(t_vector3f vec);
+t_matrix4f	matrix4f_sscale(t_fl32 x, t_fl32 y, t_fl32 z);
+t_matrix4f	matrix4f_vscale(t_vector3f scale);
+t_matrix4f	matrix4f_usscale(t_fl32 scalar);
 
 #endif

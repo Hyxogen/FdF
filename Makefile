@@ -23,7 +23,7 @@ TEST_OBJS					:= $(addprefix $(INT_DIR)/,$(TEST_SRCS:%.cpp=%.o))
 SRC_FILES					:= fdf.c matrix4f_mulm.c matrix4f_mulv.c matrix4f_ortho.c \
 								matrix4f_transpose.c matrix4f_clear.c matrix4f_rotation.c \
 								matrix4f_mulva.c matrix4f_identity.c \
-								matrix4f_translation.c \
+								matrix4f_translation.c matrix4f_scale.c \
 								window_destroy.c window_init.c window_update.c \
 								safe_malloc.c file_utils.c \
 								assert.c vector4f_add.c \
