@@ -29,5 +29,5 @@ t_vector4f	vector4f_muls(const t_vector4f *a, t_fl32 scalar);
 
 t_fl32		vector4f_dot(const t_vector4f *a, const t_vector4f *b);
 
-void		vector4f_convert3f(t_vector4f *out, t_vector3f *points, t_size n);
+void		vector4f_convert3f(t_vector4f *out, t_vector3f *points, t_size n, t_fl32 w);
 #endif

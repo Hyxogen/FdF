@@ -61,7 +61,6 @@ void
 	while (len)
 	{
 		*out = ft_atoi(map_str);
-		printf("n:%zu val%d\n", len, *out);
 		while (_parser_is_valid_entry(*map_str))
 		{
 			map_str++;

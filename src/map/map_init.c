@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "map.h"
-#include "mem_utils.h"
+#include "util/mem_utils.h"
 
 t_bool
 	_map_set_sizes(t_map *map,
@@ -26,7 +26,10 @@ t_bool
 	_map_set_vertices(t_map *map,
 		t_int32 width, t_int32 height, t_vector4f *vertices)
 {
+	(void)width;
+	(void)height;
 	map->m_vertices = vertices;
+	return (TRUE);
 }
 
 t_bool
@@ -36,8 +39,9 @@ t_bool
 	t_vector4f	*vec4_vertices;
 
 	vec4_vertices = safe_malloc(sizeof(t_vector4f) * width * height);
-	vector4f_convert3f(vec4_vertices, vertices, width * height);
+	vector4f_convert3f(vec4_vertices, vertices, width * height, 1.0f);
 	_map_set_vertices(map, width, height, vec4_vertices);
+	return (TRUE);
 }
 
 t_bool
@@ -46,4 +50,5 @@ t_bool
 {
 	_map_set_sizes(map, width, height);
 	map_set_vertices(map, width, height, vertices);
+	return (TRUE);
 }

@@ -38,7 +38,8 @@ SRC_FILES					:= fdf.c matrix4f_mulm.c matrix4f_mulv.c matrix4f_ortho.c \
 								color_encode.c color_colors.c \
 								renderer_render_line.c renderer_render_quads.c \
 								renderer_render_quads_ndc.c \
-								parser_parse_map.c
+								parser_parse_map.c \
+								map_create.c map_init.c
 OBJ_FILES					:= $(addprefix $(INT_DIR)/,$(SRC_FILES:%.c=%.o))
 
 VPATH						:= $(SRC_DIR) $(SRC_DIR)/math $(SRC_DIR)/math/matrix4f \

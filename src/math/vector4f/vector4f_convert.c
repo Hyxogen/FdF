@@ -13,12 +13,14 @@
 #include "../vector4f.h"
 
 void
-	vector4f_convert3f(t_vector4f *out, t_vector3f *points, t_size n)
+	vector4f_convert3f(t_vector4f *out, t_vector3f *points, t_size n, t_fl32 w)
 {
 	while (n)
 	{
-		*out = *((t_vector4f *) points);
-		out->m_w = 0.0f;
+		out->m_x = points->m_x;
+		out->m_y = points->m_y;
+		out->m_z = points->m_z;
+		out->m_w = w;
 		out++;
 		points++;
 		n--;

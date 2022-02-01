@@ -26,7 +26,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+/*
 t_vector4f	g_map[] =
 {
 	{-50, -50, 0, 1}, {0, -50, 0, 1}, {50, -50, 0, 1},
@@ -53,6 +53,13 @@ t_ortho_settings g_projection = {
 	0.0f, 500.0f,
 	0.0f, 500.0f
 };
+*/
+
+t_int32	g_map[] = {
+	0, 0, 0,
+	0, 50, 0,
+	0, 0, 0
+};
 
 /*
 static const t_fl32 g_iso_yz = cos(M_PI_4);
@@ -65,21 +72,19 @@ int
 	temp_loop(void *param)
 {
 	static t_image_buffer	*buffer;
-	static float			a;
+	static t_fl32				a;
 	t_window				*window;
 	t_matrix4f				trans;
 	t_matrix4f				effect;
-	t_matrix4f				proj;
-	t_matrix4f				rotxz;
-	t_matrix4f				rotyz;
 	t_matrix4f				rot;
 	t_vector4f				*transformed;
 	t_vector2f				*ndc_points;
+	t_vector4f				*map_vertices;
+	t_map					*map;
 
-	rotxz = matrix4f_rotation(vector3f_normalize(vector3f(0.0f, 1.0f, 0.0f)), M_PI_4);
-	rotyz = matrix4f_rotation(vector3f_normalize(vector3f(1.0f, 0.0f, 0.0f)), 0.5235988f);
-	rot = matrix4f_mulm(&rotxz, &rotyz);
-	proj = matrix4f_ortho(&g_projection);
+	map = map_create(3, 3, g_map);
+	map_vertices = map->m_vertices;
+	rot = matrix4f_rotation(vector3f_normalize(vector3f(0.0f, 1.0f, 0.0f)), a);
 	window = param;
 	if (!buffer)
 		buffer = ib_create(window->m_mlx_handle, window->m_width, window->m_height);
@@ -89,13 +94,16 @@ int
 
 	transformed = safe_malloc(sizeof(t_vector4f) * 3 * 3);
 	ndc_points = safe_malloc(sizeof(t_vector2f) * 3 * 3);
-	matrix4f_mulva(transformed, &effect, g_cube, 3 * 3);
+	matrix4f_mulva(transformed, &effect, map_vertices, 3 * 3);
 	vector2f_convert4f(ndc_points, transformed, 3 * 3);
 	render_quads(buffer, vector2i(3, 3), transformed, color_white());
 	ib_put(buffer, window, vector2i_zero());
-	a += 0.01f;
+	(void)a;
+	a += 0.0001f;
 	free(ndc_points);
 	free(transformed);
+	free(map);
+	free(map_vertices);
 	return (FALSE);
 }
 

@@ -37,6 +37,8 @@ void
 {
 	t_int32	*address;
 
+	if (x < 0 || y < 0 || x >= buffer->m_image_width || y >= buffer->m_image_height)
+		return ;
 	address = (t_int32 *) ib_get_pixel_address(buffer, x, y);
 	*address = ib_encode_color(buffer, color);
 }
