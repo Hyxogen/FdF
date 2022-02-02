@@ -53,7 +53,7 @@ VPATH						:= $(SRC_DIR) $(SRC_DIR)/math $(SRC_DIR)/math/matrix4f \
 								$(SRC_DIR)/gfx/color $(SRC_DIR)/gfx/renderer \
 								$(SRC_DIR)/math/vector2i $(SRC_DIR)/map \
 								$(SRC_DIR)/math/vector3f $(SRC_DIR)/math/vector2f \
-								$(SRC_DIR)/parser/map_parser $(SRC_DIR)/instance \
+								$(SRC_DIR)/parser/map_parser $(SRC_DIR)/application/instance \
 								$(SRC_DIR)/application $(SRC_DIR)/transform \
 								$(TEST_DIR)
 
