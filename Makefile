@@ -43,6 +43,7 @@ SRC_FILES					:= fdf.c matrix4f_mulm.c matrix4f_mulv.c matrix4f_ortho.c \
 								map_create.c map_init.c map_destroy.c \
 								fdf_instance_create.c fdf_instance_init.c \
 								fdf_instance_destroy.c fdf_loop.c \
+								fdf_init.c fdf_start.c \
 								fdf_key_handler.c fdf_quit.c fdf_setup_transform.c \
 								transform_get_matrix.c
 OBJ_FILES					:= $(addprefix $(INT_DIR)/,$(SRC_FILES:%.c=%.o))

@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   locale.h                                           :+:    :+:            */
+/*   fdf_start.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/02/02 07:55:23 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/02/02 15:41:15 by dmeijer       ########   odam.nl         */
+/*   Created: 2022/02/02 15:33:22 by dmeijer       #+#    #+#                 */
+/*   Updated: 2022/02/02 15:34:15 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LOCALE_H
-# define LOCALE_H
+#include "fdf.h"
 
-# ifndef FDF_MSG_ARGS_INVALID
-#  define FDF_MSG_ARGS_INVALID "Invalid arguments. Usage: ./fdf {path-to-map}\n"
-# endif
-
-# ifndef FDF_MSG_MAP_LOAD_FAIL
-#  define FDF_MSG_MAP_LOAD_FAIL "Failed to load map. \
-Did you check it's format?\n"
-# endif
-
-# ifndef FDF_WINDOW_NAME
-#  define FDF_WINDOW_NAME "fdf"
-# endif
-
-#endif
+t_bool
+	fdf_start(t_fdf *instance)
+{
+	mlx_loop(instance->m_mlx_handle);
+	return (FALSE);
+}

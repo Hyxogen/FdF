@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/02 08:00:11 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/02/02 15:22:34 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/02 15:49:57 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ t_int32
 	printf("Keycode:%d\n", keycode);
 	if (keycode == KEY_ESC)
 		fdf_quit(instance);
-	if (keycode == KEY_NUM5 || keycode == KEY_5)
-		instance->m_render_mode = rm_pers;
 	if (keycode == KEY_UP)
 		fdf_move_map(instance, vector3f(0.0f, 0.25f, 0.0f));
 	if (keycode == KEY_DOWN)
