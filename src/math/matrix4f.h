@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 12:50:59 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/20 15:58:36 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/02 10:18:29 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,15 @@ typedef struct s_ortho_settings {
 	t_fl32	m_bottom;
 }	t_ortho_settings;
 
+typedef struct s_proj_settings {
+	t_fl32	m_near;
+	t_fl32	m_far;
+	t_fl32	m_left;
+	t_fl32	m_right;
+	t_fl32	m_top;
+	t_fl32	m_bottom;
+}	t_proj_settings;
+
 void		matrix4f_clear(t_matrix4f *mat);
 
 t_matrix4f	matrix4f_mulm(const t_matrix4f *a, const t_matrix4f *b);
@@ -41,6 +50,7 @@ void		matrix4f_mulvai(const t_matrix4f *mat, t_vector4f *vec,
 				t_size n);
 
 t_matrix4f	matrix4f_ortho(const t_ortho_settings *proj);
+t_matrix4f	matrix4f_persp(const t_proj_settings *proj);
 
 t_matrix4f	matrix4f_transpose(const t_matrix4f *mat);
 

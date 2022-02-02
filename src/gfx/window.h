@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 15:00:42 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/19 13:33:10 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/02 08:26:18 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 # include "../util/types.h"
 # include <ft_stdbool.h>
 
-struct s_image_buffer;
+struct	s_image_buffer;
 
 typedef struct s_window {
-	t_int32			m_width;
-	t_int32			m_height;
-	char			*m_title;
-	void			*m_window_handle;
-	void			*m_mlx_handle;
+	t_int32					m_width;
+	t_int32					m_height;
+	char					*m_title;
+	void					*m_window_handle;
+	void					*m_mlx_handle;
 	struct s_image_buffer	*m_imbuffer_front;
 }	t_window;
 

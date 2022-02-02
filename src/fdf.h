@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/02 07:54:56 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/02/02 07:55:19 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/02 13:35:41 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "gfx/window.h"
 # include "gfx/image_buffer.h"
 # include "map/map.h"
+# include "transform/transform.h"
 
 enum e_rendermode {
 	rm_iso,
@@ -30,6 +31,7 @@ typedef struct s_fdf {
 	enum e_rendermode	m_render_mode;
 	t_window			*m_main_window;
 	t_map				*m_loaded_map;
+	t_transform			m_map_transform;
 }	t_fdf;
 
 void	fdf_instance_init(t_fdf *fdf,
@@ -37,5 +39,9 @@ void	fdf_instance_init(t_fdf *fdf,
 t_fdf	*fdf_instance_create(void);
 void	fdf_instance_destroy(t_fdf *instance);
 
+t_int32	fdf_handle_key(t_int32 keycode, t_fdf *instance);
 t_int32	fdf_loop(void	*instance_ptr);
+
+void	fdf_setup_transform(t_fdf *instance);
+void	fdf_quit(t_fdf *instance);
 #endif

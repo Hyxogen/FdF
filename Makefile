@@ -23,7 +23,7 @@ TEST_OBJS					:= $(addprefix $(INT_DIR)/,$(TEST_SRCS:%.cpp=%.o))
 SRC_FILES					:= fdf.c matrix4f_mulm.c matrix4f_mulv.c matrix4f_ortho.c \
 								matrix4f_transpose.c matrix4f_clear.c matrix4f_rotation.c \
 								matrix4f_mulva.c matrix4f_identity.c \
-								matrix4f_translation.c matrix4f_scale.c \
+								matrix4f_translation.c matrix4f_scale.c matrix4f_persp.c \
 								window_destroy.c window_init.c window_update.c \
 								window_init_imbuffers.c \
 								safe_malloc.c file_utils.c \
@@ -31,7 +31,7 @@ SRC_FILES					:= fdf.c matrix4f_mulm.c matrix4f_mulv.c matrix4f_ortho.c \
 								vector4f_dot.c vector4f_muls.c vector4f_convert.c \
 								vector2i_zero.c vector2i_convert.c vector2i_constructor.c \
 								vector3f_constructor.c vector3f_inverse.c vector3f_normalize.c \
-								vector3f_magnitude.c \
+								vector3f_magnitude.c vector3f_zero.c \
 								vector2f_convert.c \
 								image_buffer_clear.c image_buffer_create.c \
 								image_buffer_destroy.c image_buffer_flush.c \
@@ -42,7 +42,9 @@ SRC_FILES					:= fdf.c matrix4f_mulm.c matrix4f_mulv.c matrix4f_ortho.c \
 								parser_parse_map.c \
 								map_create.c map_init.c map_destroy.c \
 								fdf_instance_create.c fdf_instance_init.c \
-								fdf_instance_destroy.c fdf_loop.c
+								fdf_instance_destroy.c fdf_loop.c \
+								fdf_key_handler.c fdf_quit.c fdf_setup_transform.c \
+								transform_get_matrix.c
 OBJ_FILES					:= $(addprefix $(INT_DIR)/,$(SRC_FILES:%.c=%.o))
 
 VPATH						:= $(SRC_DIR) $(SRC_DIR)/math $(SRC_DIR)/math/matrix4f \
@@ -52,6 +54,7 @@ VPATH						:= $(SRC_DIR) $(SRC_DIR)/math $(SRC_DIR)/math/matrix4f \
 								$(SRC_DIR)/math/vector2i $(SRC_DIR)/map \
 								$(SRC_DIR)/math/vector3f $(SRC_DIR)/math/vector2f \
 								$(SRC_DIR)/parser/map_parser $(SRC_DIR)/instance \
+								$(SRC_DIR)/application $(SRC_DIR)/transform \
 								$(TEST_DIR)
 
 DEFINES						:=
@@ -69,7 +72,7 @@ ALL_LINKFLAGS				:= -L$(LIBFT_DIR) -lft
 OSX_ALWAYS_LINKFLAGS		:= -L$(OSX_MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 OSX_ALWAYS_CFLAGS			:= -I$(OSX_MLX_DIR)
 OSX_ALWAYS_DEFINES			:= $(OSX_DEBUG_DEFINES)
-OSX_DEBUG_LINKFLAGS			:= -fsanitize=address
+OSX_DEBUG_LINKFLAGS			:=
 OSX_RELEASE_LINKSFLAGS		:= -fsanitize=address
 OSX_DISTR_LINKSFLAGS		:=
 
@@ -81,8 +84,8 @@ LINUX_RELEASE_LINKSFLAGS	:= -fsanitize=address
 LINUX_DISTR_LINKSFLAGS		:=
 
 ALWAYS_DEBUG_CFLAGS			:= -g3 -O0 -fsanitize=address
-ALWAYS_DEBUG_CXXFLAGS			:= -g3 -O0 -fsanitize=address
-ALWAYS_DEBUG_LINKFLAGS		:= -fsanitize=address -fsanitize=undefined
+ALWAYS_DEBUG_CXXFLAGS		:= -g3 -O0 -fsanitize=address
+ALWAYS_DEBUG_LINKFLAGS		:= -fsanitize=address
 ALWAYS_DEBUG_DEFINES		:= -DFDF_DEBUG
 
 ALWAYS_RELEASE_CFLAGS		:= -g3 -O2 -fsanitize=address
@@ -130,7 +133,7 @@ else ifeq ($(config), release_osx)
 	DEPENDENCIES	+= $(OSX_MLX_LIB)
 else ifeq ($(config), distr_osx)
 	ALL_CFLAGS		+= $(ALWAYS_DISTR_CFLAGS) $(OSX_ALWAYS_CFLAGS)
-	ALL_LINKFLAGS	+= $(ALWAYS_DEBUG_LINKFLAGS) $(OSX_ALWAYS_LINKFLAGS) $(OSX_DISTR_LINKSFLAGS)
+	ALL_LINKFLAGS	+= $(ALWAYS_DISTR_LINKFLAGS) $(OSX_ALWAYS_LINKFLAGS) $(OSX_DISTR_LINKSFLAGS)
 	DEFINES			+= $(OSX_ALWAYS_DEFINES)
 	DEPENDENCIES	+= $(OSX_MLX_LIB)
 else

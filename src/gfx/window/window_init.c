@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 15:18:43 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/19 09:52:14 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/02 08:27:18 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_bool
 	window->m_title = title;
 	window->m_width = width;
 	window->m_height = height;
+	window->m_imbuffer_front = NULL;
 	return (TRUE);
 }
 

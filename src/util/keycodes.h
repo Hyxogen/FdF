@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   vector3f.h                                         :+:    :+:            */
+/*   keycodes.h                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/01/18 12:54:35 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/02/02 10:29:53 by dmeijer       ########   odam.nl         */
+/*   Created: 2022/02/02 08:07:08 by dmeijer       #+#    #+#                 */
+/*   Updated: 2022/02/02 14:38:08 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECTOR3F_H
-# define VECTOR3F_H
+#ifndef KEYCODES_H
+# define KEYCODES_H
 
-# include "util/types.h"
-
-typedef struct s_vector3f {
-	t_fl32	m_x;
-	t_fl32	m_y;
-	t_fl32	m_z;
-}	t_vector3f;
-
-t_vector3f	vector3f(float x, float y, float z);
-
-t_vector3f	vector3f_inverse(const t_vector3f *vector);
-
-t_fl32		vector3f_magnitude(const t_vector3f *vector);
-
-t_vector3f	vector3f_normalize(t_vector3f vector);
-
-t_vector3f	vector3f_zero(void);
+# define KEY_ESC	53
+# define KEY_NUM5	87
+# define KEY_UP		126
+# define KEY_DOWN	125
+# define KEY_RIGHT	124
+# define KEY_LEFT	123
+# define KEY_5		23
+# define KEY_Q		12
+# define KEY_E		14
+# define KEY_Z		6
+# define KEY_X		7
 
 #endif

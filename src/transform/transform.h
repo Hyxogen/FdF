@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   vector3f.h                                         :+:    :+:            */
+/*   transform.h                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/01/18 12:54:35 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/02/02 10:29:53 by dmeijer       ########   odam.nl         */
+/*   Created: 2022/02/02 13:20:38 by dmeijer       #+#    #+#                 */
+/*   Updated: 2022/02/02 13:42:35 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECTOR3F_H
-# define VECTOR3F_H
+#ifndef TRANSFORM_H
+# define TRANSFORM_H
 
-# include "util/types.h"
+# include "math/matrix4f.h"
 
-typedef struct s_vector3f {
-	t_fl32	m_x;
-	t_fl32	m_y;
-	t_fl32	m_z;
-}	t_vector3f;
+typedef struct s_transform {
+	t_matrix4f	m_translation;
+	t_matrix4f	m_rotation;
+	t_matrix4f	m_scale;
+}	t_transform;
 
-t_vector3f	vector3f(float x, float y, float z);
-
-t_vector3f	vector3f_inverse(const t_vector3f *vector);
-
-t_fl32		vector3f_magnitude(const t_vector3f *vector);
-
-t_vector3f	vector3f_normalize(t_vector3f vector);
-
-t_vector3f	vector3f_zero(void);
+t_matrix4f	transform_get_matrix(const t_transform *transform);
 
 #endif
