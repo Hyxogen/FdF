@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/20 09:09:10 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/20 09:10:41 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/02 15:20:03 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 #include "util/mem_utils.h"
 
 t_vector3f
-	*_map_convert_heights(t_int32 width, t_int32 height, t_int32 *heights, t_int32 spacing)
+	*_map_convert_heights(t_int32 width, t_int32 height,
+		t_int32 *heights, t_int32 spacing)
 {
 	t_vector3f	*vertices;
 	t_int32		index;

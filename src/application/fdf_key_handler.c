@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/02 08:00:11 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/02/02 14:38:26 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/02 15:22:34 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,15 @@ void
 		= matrix4f_mulm(&instance->m_map_transform.m_rotation, &rotation);
 }
 
+void
+	fdf_increase_scale(t_fdf *instance, t_vector3f scale)
+{
+	t_matrix4f	scale_mat;
+
+	scale_mat = matrix4f_vscale(scale);
+	instance->m_map_transform.m_scale
+		= matrix4f_mulm(&instance->m_map_transform.m_scale, &scale_mat);
+}
 
 t_int32
 	fdf_handle_key(t_int32 keycode, t_fdf *instance)
@@ -62,9 +71,9 @@ t_int32
 	if (keycode == KEY_RIGHT)
 		fdf_move_map(instance, vector3f(0.25f, 0.0f, 0.0f));
 	if (keycode == KEY_Q)
-		fdf_move_map(instance, vector3f(0.0f, 0.0f, -0.25f));
+		fdf_increase_scale(instance, vector3f(1.1f, 1.1f, 1.1f));
 	if (keycode == KEY_E)
-		fdf_move_map(instance, vector3f(0.0f, 0.0f, 0.25f));
+		fdf_increase_scale(instance, vector3f(0.9f, 0.9f, 0.9f));
 	if (keycode == KEY_Z)
 		fdf_rotate_map(instance, vector3f(0.0f, 0.0f, M_PI / 10.0f));
 	if (keycode == KEY_X)

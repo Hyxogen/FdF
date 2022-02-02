@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   camera_get_viewmat.c                               :+:    :+:            */
+/*   platform.h                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/02/02 10:08:20 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/02/02 12:35:20 by dmeijer       ########   odam.nl         */
+/*   Created: 2022/02/02 15:05:41 by dmeijer       #+#    #+#                 */
+/*   Updated: 2022/02/02 15:23:10 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*Setting up rotation matrix might be a bit more difficult*/
+#ifndef PLATFORM_H
+# define PLATFORM_H
 
-#include "camera.h"
+# ifdef FDF_PLATFORM_LINUX
+#  define _POSIX_C_SOURCE 200112L
+#  define __USE_MISC
+#  define _ISO99_SOURCE
+# endif
 
-t_matrix4f
-	camera_get_viewmat(const t_camera *camera)
-{
-	t_matrix4f	translation;
-	t_matrix4f	rotation;
-
-	translation = matrix4f_translation(camera->m_position);
-	rotation = matrix4f_rotation(
-			vector3f(0.0f, 1.0f, 0.0f), camera->m_rotation.m_y);
-	return (matrix4f_mulm(&rotation, &translation));
-}
+#endif

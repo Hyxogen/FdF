@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 12:54:35 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/20 09:32:00 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/02 15:19:54 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ t_vector4f	vector4f_muls(const t_vector4f *a, t_fl32 scalar);
 
 t_fl32		vector4f_dot(const t_vector4f *a, const t_vector4f *b);
 
-void		vector4f_convert3f(t_vector4f *out, t_vector3f *points, t_size n, t_fl32 w);
+void		vector4f_convert3f(t_vector4f *out,
+				t_vector3f *points, t_size n, t_fl32 w);
 #endif

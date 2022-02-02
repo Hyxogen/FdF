@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/02 10:24:08 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/02/02 14:06:49 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/02 14:58:26 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void
 	}
 }
 
+/*Deprecated*/
 void
 	_fit_to_unit_cube(t_vector4f *vertices, t_int32 count)
 {
@@ -86,6 +87,7 @@ void
 	matrix4f_mulvai(&scale, vertices, count);
 }
 
+/*Deprecated*/
 void
 	render_map_fit(t_image_buffer *buffer,
 			const t_matrix4f *transformation, const t_map *map, t_color color)

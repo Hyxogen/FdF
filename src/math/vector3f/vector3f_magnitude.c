@@ -6,11 +6,11 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/24 08:03:10 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/24 08:05:49 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/02 15:06:01 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define _POSIX_C_SOURCE 200112L
+#include "platform.h"
 #include "../vector3f.h"
 #include <math.h>
 

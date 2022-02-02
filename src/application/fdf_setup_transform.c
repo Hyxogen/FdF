@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/02 13:23:57 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/02/02 14:44:20 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/02 15:25:47 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void
 	instance->m_map_transform.m_translation
 		= _get_iso_translation(instance->m_loaded_map);
 	vertices = safe_malloc(sizeof(t_vector4f) * count);
-	flip = matrix4f_sscale(1.0f, -1.0f, -1.0f);
+	flip = matrix4f_sscale(1.2f, -1.2f, -1.2f);
 	transformation
 		= matrix4f_mulm(&instance->m_map_transform.m_rotation, &flip);
 	matrix4f_mulva(vertices, &transformation,

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   matrix4f_scale.c                                   :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/02/02 15:05:12 by dmeijer       #+#    #+#                 */
+/*   Updated: 2022/02/02 15:19:49 by dmeijer       ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../matrix4f.h"
 
 t_matrix4f
@@ -24,4 +36,3 @@ t_matrix4f
 {
 	return (matrix4f_sscale(scalar, scalar, scalar));
 }
-

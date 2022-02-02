@@ -1,14 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   file_utils.c                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/02/02 15:21:19 by dmeijer       #+#    #+#                 */
+/*   Updated: 2022/02/02 15:21:19 by dmeijer       ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "platform.h"
 #include "file_utils.h"
-
-#ifndef FILE_UTILS_BUFFER_SIZE
-#define FILE_UTILS_BUFFER_SIZE 1024
-#endif
-
-#define _POSIX_C_SOURCE 200809L
+#include "mem_utils.h"
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include "mem_utils.h"
+
+#ifndef FILE_UTILS_BUFFER_SIZE
+# define FILE_UTILS_BUFFER_SIZE 1024
+#endif
 
 t_bool
 	file_can_read(const char *name)
@@ -46,7 +57,6 @@ t_bool
 	return (TRUE);
 }
 
-
 t_bool
 	file_readall(const char *file, char **out, t_size *file_size)
 {
@@ -66,5 +76,5 @@ t_bool
 	}
 	*out = buffer;
 	close(fd);
-	return (TRUE);	
+	return (TRUE);
 }

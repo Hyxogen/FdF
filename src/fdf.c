@@ -6,42 +6,18 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 15:34:26 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/02/02 13:47:20 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/02 15:27:44 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "math/vector2i.h"
-#define __USE_MISC
-#define _ISO99_SOURCE
-#include <fcntl.h>
-#include <stdio.h>
-#include "gfx/window.h"
-#include "gfx/image_buffer.h"
-#include "gfx/renderer.h"
-#include "util/assert.h"
-#include "parser/map_parser.h"
-#include "math/matrix4f.h"
-#include "map/map.h"
-#include "util/mem_utils.h"
-#include "util/file_utils.h"
-#include <ft_string.h>
+#include "platform.h"
 #include "fdf.h"
 #include "locale.h"
-#include <ft_stdlib.h>
-#include <math.h>
-#include <mlx.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <ft_stdio.h>
+#include "parser/map_parser.h"
+#include "util/file_utils.h"
 #include <stdlib.h>
-
-/*
-static const t_fl32 g_iso_yz = cos(M_PI_4);
-static const t_fl32 g_iso_xz = cos(M_PI_4) * sin(M_PI / 6.0f);
-
-cos(pi/4) rotation yz
-cos(pi/4)*sin(π/6) rotation xz
-*/
+#include <ft_stdio.h>
+#include <unistd.h>
 
 t_map
 	*load_map(const char *map_file)
@@ -79,10 +55,12 @@ int
 	}
 	instance = fdf_instance_create();
 	instance->m_mlx_handle = mlx_init();
-	instance->m_main_window = window_create(instance->m_mlx_handle, "Hello World!", 500, 500);
+	instance->m_main_window = window_create(instance->m_mlx_handle,
+		"Hello World!", 500, 500);
 	window_init_imbuffers(instance->m_main_window);
 	instance->m_loaded_map = load_map(argv[1]);
-	mlx_key_hook(instance->m_main_window->m_window_handle, fdf_handle_key, instance);
+	mlx_key_hook(instance->m_main_window->m_window_handle,
+		fdf_handle_key, instance);
 	if (instance->m_loaded_map == NULL)
 	{
 		fdf_instance_destroy(instance);

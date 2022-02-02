@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/24 08:17:23 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/24 08:43:01 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/02 15:22:06 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ void
 {
 	while (n)
 	{
-		out->m_x = (t_int32)((ndc_points->m_x + 1) * ((t_fl32) buffer->m_image_width / 2));
-		out->m_y = (t_int32)((ndc_points->m_y + 1) * ((t_fl32) buffer->m_image_height / 2));
+		out->m_x = (t_int32)((ndc_points->m_x + 1)
+				* ((t_fl32) buffer->m_image_width / 2));
+		out->m_y = (t_int32)((ndc_points->m_y + 1)
+				* ((t_fl32) buffer->m_image_height / 2));
 		out++;
 		ndc_points++;
 		n--;

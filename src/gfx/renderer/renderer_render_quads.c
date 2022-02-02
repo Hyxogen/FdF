@@ -12,7 +12,6 @@
 
 #include "../renderer.h"
 
-
 /*TODO pass from and to by pointer*/
 void
 	_render_quads_part(t_image_buffer *buffer,
