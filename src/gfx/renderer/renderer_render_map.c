@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/02 10:24:08 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/02/03 08:06:12 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/03 08:17:08 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void
 			vertices->m_y = w_comp;
 		if (vertices->m_z > w_comp)
 			vertices->m_z = w_comp;
-		vertices->m_w = 1.0f;
 		count--;
 		vertices++;
 	}
@@ -57,8 +56,8 @@ void
 			vertices->m_x /= w_comp;
 			vertices->m_y /= w_comp;
 			vertices->m_z /= w_comp;
-			vertices->m_w = 1.0f;
 		}
+		vertices->m_w = 1.0f;
 		count--;
 		vertices++;
 	}
