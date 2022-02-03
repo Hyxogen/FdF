@@ -105,7 +105,7 @@ ifdef verbose
 endif
 
 ifndef config
-	config := debug_osx
+	config := distr_osx
 endif
 
 ifeq ($(config), debug_linux)
@@ -181,11 +181,15 @@ clean:
 	$(SILENT)echo Cleaning object files
 	$(SILENT)rm -f $(OBJ_FILES)
 	$(SILENT)rm -f $(TEST_OBJS)
+	$(SILENT)${MAKE} -C $(OSX_MLX_DIR) clean
+	$(SILENT)${MAKE} -C $(LIBFT_DIR) clean
+
 
 fclean: clean
 	$(SILENT)echo Cleaning $(TARGET)
 	$(SILENT)rm -f $(TARGET)
 	$(SILENT)echo Cleaning $(TEST_TARGET)
 	$(SILENT)rm -f $(TEST_TARGET)
+	$(SILENT)${MAKE} -C $(LIBFT_DIR) fclean
 
 re: fclean all

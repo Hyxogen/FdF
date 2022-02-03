@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/19 13:07:37 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/02/03 12:54:54 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/03 16:06:53 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void		render_map(t_image_buffer *buffer,
 				const t_matrix4f *transformation,
 				const t_map *map, t_color color);
 
-t_bool		_clip_line(t_vector4f *start, t_vector4f *end, t_color *color);
+t_bool		_clip_line(t_vector4f *start, t_vector4f *end);
 void		_normalize_vector(t_vector4f *out,
 				const t_vector4f *list, t_size count);
 void		_ndc_to_window(t_image_buffer *buffer,

@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 15:20:31 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/02/02 08:27:40 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/03 15:43:57 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void
 	if (window->m_imbuffer_front)
 		mlx_destroy_image(window->m_mlx_handle,
 			window->m_imbuffer_front->m_image_handle);
+	free(window->m_imbuffer_front);
 }
 
 void

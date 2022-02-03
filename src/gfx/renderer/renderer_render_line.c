@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/19 15:27:25 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/02/03 14:56:11 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/03 15:50:43 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,6 @@ void
 	}
 }
 
-/*Change clipline if projection near changes*/
 void
 	render_line(t_image_buffer *buffer,
 		t_vector4f start, t_vector4f end, t_color color)
@@ -120,7 +119,7 @@ void
 	t_vector2i	istart;
 	t_vector2i	iend;
 
-	if (!_clip_line(&start, &end, &color))
+	if (!_clip_line(&start, &end))
 		return ;
 	_normalize_vector(&start, &start, 1);
 	_normalize_vector(&end, &end, 1);

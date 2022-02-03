@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/02 07:55:23 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/02/02 15:41:15 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/03 16:11:51 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 # ifndef FDF_MSG_MAP_LOAD_FAIL
 #  define FDF_MSG_MAP_LOAD_FAIL "Failed to load map. \
-Did you check it's format?\n"
+Did you check the path?\n"
 # endif
 
 # ifndef FDF_WINDOW_NAME

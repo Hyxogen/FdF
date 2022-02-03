@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/03 09:48:36 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/02/03 14:31:55 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/03 15:50:52 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_bool
 
 void
 	_clip_line_part(t_vector4f *visible, t_vector4f *clipped,
-		t_fl32 sign, t_int32 axis, t_color *color)
+		t_fl32 sign, t_int32 axis)
 {
 	t_fl32	*clip_ele;
 	t_fl32	*visb_ele;
@@ -32,7 +32,6 @@ void
 	visb_ele = (t_fl32 *) visible;
 	if (clip_ele[axis] * sign < clip_ele[3])
 		return ;
-	*color = color_white();
 	scale = visb_ele[3] - visb_ele[axis] * sign;
 	scale = scale / (scale - (clip_ele[3] - clip_ele[axis] * sign));
 	*clipped = vector4f_subtract(clipped, visible);
@@ -41,21 +40,21 @@ void
 }
 
 t_bool
-	_clip_line(t_vector4f *start, t_vector4f *end, t_color *color)
+	_clip_line(t_vector4f *start, t_vector4f *end)
 {
 	if (_should_clip(start) && _should_clip(end))
 		return (FALSE);
 	if (_should_clip(start))
 	{
-		_clip_line_part(end, start, 1, 0, color);
-		_clip_line_part(end, start, -1, 0, color);
-		_clip_line_part(end, start, 1, 1, color);
-		_clip_line_part(end, start, -1, 1, color);
+		_clip_line_part(end, start, 1, 0);
+		_clip_line_part(end, start, -1, 0);
+		_clip_line_part(end, start, 1, 1);
+		_clip_line_part(end, start, -1, 1);
 		return (TRUE);
 	}
-	_clip_line_part(start, end, 1, 0, color);
-	_clip_line_part(start, end, -1, 0, color);
-	_clip_line_part(start, end, 1, 1, color);
-	_clip_line_part(start, end, -1, 1, color);
+	_clip_line_part(start, end, 1, 0);
+	_clip_line_part(start, end, -1, 0);
+	_clip_line_part(start, end, 1, 1);
+	_clip_line_part(start, end, -1, 1);
 	return (TRUE);
 }
