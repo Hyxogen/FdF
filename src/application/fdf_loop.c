@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/02 07:54:44 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/02/03 15:27:48 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/03 16:22:26 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,6 @@
 #include "map/map.h"
 #include "gfx/renderer.h"
 #include "math/matrix4f.h"
-#include <math.h>
-
-#ifndef M_PI
-# define M_PI 3.141592653589793f
-#endif
 
 t_proj_settings
 	get_projection_settings(void)
