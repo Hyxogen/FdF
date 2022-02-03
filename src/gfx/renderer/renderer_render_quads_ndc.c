@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/24 08:17:23 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/02/02 15:22:06 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/03 10:39:15 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void
 
 	_ndc_to_window(buffer, &i_from, &from, 1);
 	_ndc_to_window(buffer, &i_to, &to, 1);
-	render_line(buffer, i_from, i_to, color);
+	render_line_direct(buffer, i_from, i_to, color);
 }
 
 void

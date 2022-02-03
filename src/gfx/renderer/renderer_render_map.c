@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/02 10:24:08 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/02/03 08:17:08 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/03 10:45:01 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,31 +18,30 @@
 #include "util/mem_utils.h"
 #include <math.h>
 
+/*Deprecated*/
 void
 	_clip_coords(t_vector4f *vertices, t_int32 count)
 {
 	t_fl32	w_comp;
+	t_fl32	scale;
 
 	while (count)
 	{
 		w_comp = vertices->m_w;
+		scale = 1.0f;
 		if (vertices->m_x < -w_comp)
-			vertices->m_x = -w_comp;
+			*vertices = vector4f_muls(vertices, 1.0f / vertices->m_x);
 		if (vertices->m_y < -w_comp)
-			vertices->m_y = -w_comp;
-		if (vertices->m_z < w_comp)
-			vertices->m_z = -w_comp;
+			*vertices = vector4f_muls(vertices, 1.0f / vertices->m_y);
 		if (vertices->m_x > w_comp)
-			vertices->m_x = w_comp;
+			*vertices = vector4f_muls(vertices, 1.0f / vertices->m_x);
 		if (vertices->m_y > w_comp)
-			vertices->m_y = w_comp;
-		if (vertices->m_z > w_comp)
-			vertices->m_z = w_comp;
+			*vertices = vector4f_muls(vertices, 1.0f / vertices->m_y);
 		count--;
 		vertices++;
 	}
 }
-
+/*Deprecated*/
 void
 	_normalize_coords(t_vector4f *vertices, t_int32 count)
 {
@@ -119,11 +118,9 @@ void
 	vertices = safe_malloc(sizeof(t_vector4f) * size);
 	ndc_vertices = safe_malloc(sizeof(t_vector2f) * size);
 	matrix4f_mulva(vertices, transformation, map->m_vertices, size);
-	_clip_coords(vertices, size);
-	_normalize_coords(vertices, size);
 	vector2f_convert4f(ndc_vertices, vertices, size);
-	render_quads_ndc(buffer,
-		vector2i(map->m_width, map->m_height), ndc_vertices, color);
+	render_quads(buffer,
+		vector2i(map->m_width, map->m_height), vertices, color);
 	free(vertices);
 	free(ndc_vertices);
 }

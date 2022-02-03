@@ -29,9 +29,10 @@ SRC_FILES					:= fdf.c matrix4f_mulm.c matrix4f_mulv.c matrix4f_ortho.c \
 								safe_malloc.c file_utils.c \
 								assert.c vector4f_add.c \
 								vector4f_dot.c vector4f_muls.c vector4f_convert.c \
+								vector4f_subtract.c \
 								vector2i_zero.c vector2i_convert.c vector2i_constructor.c \
 								vector3f_constructor.c vector3f_inverse.c vector3f_normalize.c \
-								vector3f_magnitude.c vector3f_zero.c \
+								vector3f_magnitude.c vector3f_zero.c vector3f_muls.c \
 								vector2f_convert.c \
 								image_buffer_clear.c image_buffer_create.c \
 								image_buffer_destroy.c image_buffer_flush.c \
@@ -39,6 +40,7 @@ SRC_FILES					:= fdf.c matrix4f_mulm.c matrix4f_mulv.c matrix4f_ortho.c \
 								color_encode.c color_colors.c \
 								renderer_render_line.c renderer_render_quads.c \
 								renderer_render_quads_ndc.c renderer_render_map.c \
+								renderer_clipping.c \
 								parser_parse_map.c \
 								map_create.c map_init.c map_destroy.c \
 								fdf_instance_create.c fdf_instance_init.c \

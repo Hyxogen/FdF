@@ -17,12 +17,7 @@ void
 	_render_quads_part(t_image_buffer *buffer,
 		t_vector4f from, t_vector4f to, t_color color)
 {
-	t_vector2i	i_from;
-	t_vector2i	i_to;
-
-	vector2i_convert4f(&i_from, &from, 1);
-	vector2i_convert4f(&i_to, &to, 1);
-	render_line(buffer, i_from, i_to, color);
+	render_line(buffer, from, to, color);
 }
 
 void

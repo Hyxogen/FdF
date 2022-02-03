@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 14:53:39 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/19 09:09:18 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/03 14:25:56 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_vector4f
 
 	ret.m_x = a->m_x + b->m_x;
 	ret.m_y = a->m_y + b->m_y;
-	ret.m_z = a->m_w + b->m_w;
-	ret.m_w = a->m_z + b->m_z;
+	ret.m_z = a->m_z + b->m_z;
+	ret.m_w = a->m_w + b->m_w;
 	return (ret);
 }

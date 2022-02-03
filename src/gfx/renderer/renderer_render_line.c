@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/19 15:27:25 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/24 07:57:21 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/03 14:32:41 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void
 }
 
 void
-	render_line(t_image_buffer *buffer,
+	render_line_direct(t_image_buffer *buffer,
 		t_vector2i start, t_vector2i end, t_color color)
 {
 	if (ft_abs(end.m_y - start.m_y) < ft_abs(end.m_x - start.m_x))
@@ -90,4 +90,44 @@ void
 		else
 			_render_line_bresenham_ud(buffer, end, start, color);
 	}
+}
+
+void
+	_normalize_vector(t_vector4f *out, const t_vector4f *vecs, t_size count)
+{
+	while (count)
+	{
+		if (vecs->m_w != 0.0f)
+		{
+			out->m_x = vecs->m_x / vecs->m_w;
+			out->m_y = vecs->m_y / vecs->m_w;
+			out->m_z = vecs->m_z / vecs->m_w;
+			out->m_w = 1.0f;
+		}
+		out++;
+		vecs++;
+		count--;
+	}
+}
+
+
+/*Change clipline if projection near changes*/
+void
+	render_line(t_image_buffer *buffer,
+		t_vector4f start, t_vector4f end, t_color color)
+{
+	t_vector2f	ndc_start;
+	t_vector2f	ndc_end;
+	t_vector2i	istart;
+	t_vector2i	iend;
+
+	if (!_clip_line(&start, &end, &color))
+		return ;
+	_normalize_vector(&start, &start, 1);
+	_normalize_vector(&end, &end, 1);
+	vector2f_convert4f(&ndc_start, &start, 1);
+	vector2f_convert4f(&ndc_end, &end, 1);
+	_ndc_to_window(buffer, &istart, &ndc_start, 1);
+	_ndc_to_window(buffer, &iend, &ndc_end, 1);
+	render_line_direct(buffer, istart, iend, color);
 }

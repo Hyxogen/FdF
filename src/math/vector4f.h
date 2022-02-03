@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 12:54:35 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/02/02 15:19:54 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/03 11:18:40 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_vector4f {
 }	t_vector4f;
 
 t_vector4f	vector4f_add(const t_vector4f *a, const t_vector4f *b);
+t_vector4f	vector4f_subtract(const t_vector4f *a, const t_vector4f *b);
 
 t_vector4f	vector4f_muls(const t_vector4f *a, t_fl32 scalar);
 
