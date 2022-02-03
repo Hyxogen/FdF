@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/02 08:00:11 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/02/03 08:05:32 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/03 15:18:47 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,22 @@ void
 		= matrix4f_mulm(&instance->m_map_transform.m_scale, &scale_mat);
 }
 
+void
+	fdf_switch_rendermode(t_fdf *instance)
+{
+	if (instance->m_rendermode == rm_persp)
+		instance->m_rendermode = rm_ortho;
+	else
+		instance->m_rendermode = rm_persp;
+}
+
 t_int32
 	fdf_handle_key(t_int32 keycode, t_fdf *instance)
 {
-	printf("Keycode:%d\n", keycode);
 	if (keycode == KEY_ESC)
 		fdf_quit(instance);
+	if (keycode == KEY_NUM5 || keycode == KEY_5)
+		fdf_switch_rendermode(instance);
 	if (keycode == KEY_UP)
 		fdf_move_map(instance, vector3f(0.0f, 0.0f, 0.25f));
 	if (keycode == KEY_DOWN)

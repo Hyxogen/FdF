@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/02 13:23:57 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/02/03 08:12:00 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/03 15:34:21 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_matrix4f
 		index++;
 	}
 	scale = matrix4f_usscale(1.0f / largest);
-	scale.m_elements[1 + 1 * 4] *= -1;
+	scale.m_elements[0 + 0 * 4] *= -1;
 	return (scale);
 }
 
@@ -75,7 +75,7 @@ void
 	instance->m_map_transform.m_translation
 		= _get_iso_translation(instance->m_loaded_map);
 	vertices = safe_malloc(sizeof(t_vector4f) * count);
-	flip = matrix4f_sscale(1.2f, -1.2f, -1.2f);
+	flip = matrix4f_sscale(-1.2f, 1.2f, 1.2f);
 	transformation
 		= matrix4f_mulm(&instance->m_map_transform.m_rotation, &flip);
 	matrix4f_mulva(vertices, &transformation,

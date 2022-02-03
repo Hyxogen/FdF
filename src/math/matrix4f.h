@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 12:50:59 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/02/02 10:18:29 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/03 15:23:09 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void		matrix4f_mulva(t_vector4f *out, const t_matrix4f *mat,
 void		matrix4f_mulvai(const t_matrix4f *mat, t_vector4f *vec,
 				t_size n);
 
-t_matrix4f	matrix4f_ortho(const t_ortho_settings *proj);
+t_matrix4f	matrix4f_ortho(const t_proj_settings *proj);
 t_matrix4f	matrix4f_persp(const t_proj_settings *proj);
 
 t_matrix4f	matrix4f_transpose(const t_matrix4f *mat);

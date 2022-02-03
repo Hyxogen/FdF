@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/02 07:54:44 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/02/03 14:55:31 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/03 15:27:48 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,31 +21,53 @@
 #endif
 
 t_proj_settings
-	get_projection(t_fdf *instance)
+	get_projection_settings(void)
 {
 	t_proj_settings	settings;
 
-	(void)instance;
-	settings.m_near = -1.0f;
+	settings.m_near = 1.0f;
 	settings.m_far = 100.0f;
-	settings.m_left = -1.0f;
-	settings.m_right = 1.0f;
-	settings.m_top = 1.0f;
-	settings.m_bottom = -1.0f;
+	settings.m_left = 1.0f;
+	settings.m_right = -1.0f;
+	settings.m_top = -1.0f;
+	settings.m_bottom = 1.0f;
 	return (settings);
+}
+
+t_matrix4f
+	get_persp_mat(void)
+{
+	t_proj_settings	settings;
+	t_matrix4f		persp_matrix;
+
+	settings = get_projection_settings();
+	persp_matrix = matrix4f_persp(&settings);
+	return (persp_matrix);
+}
+
+t_matrix4f
+	get_ortho_mat(void)
+{
+	t_proj_settings	settings;
+	t_matrix4f		ortho_matrix;
+
+	settings = get_projection_settings();
+	ortho_matrix = matrix4f_ortho(&settings);
+	return (ortho_matrix);
 }
 
 void
 	fdf_render_map(t_fdf *instance)
 {
-	t_proj_settings	settings;
-	t_matrix4f		projection;
-	t_matrix4f		transformation;
+	t_matrix4f	projection;
+	t_matrix4f	transformation;
 
 	ib_clear(instance->m_main_window->m_imbuffer_front);
 	transformation = transform_get_matrix(&instance->m_map_transform);
-	settings = get_projection(instance);
-	projection = matrix4f_identity();
+	if (instance->m_rendermode == rm_ortho)
+		projection = get_ortho_mat();
+	else
+		projection = get_persp_mat();
 	transformation = matrix4f_mulm(&projection, &transformation);
 	render_map(instance->m_main_window->m_imbuffer_front,
 		&transformation, instance->m_loaded_map, color_white());

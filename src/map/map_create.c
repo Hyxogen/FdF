@@ -6,12 +6,13 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/20 09:09:10 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/02/03 09:23:08 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/03 15:31:17 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map.h"
 #include "util/mem_utils.h"
+#include <stdlib.h>
 
 t_vector3f
 	*_map_convert_heights(t_int32 width, t_int32 height,
@@ -30,7 +31,7 @@ t_vector3f
 	{
 		vertices[index].m_x = x;
 		vertices[index].m_y = y;
-		vertices[index].m_z = (float) heights[index];
+		vertices[index].m_z = -((float) heights[index]);
 		index++;
 		x += spacing;
 		if ((index % width) == 0)
@@ -51,5 +52,6 @@ t_map
 	vertices = _map_convert_heights(width, height, heights, 1);
 	map = safe_malloc(sizeof(t_map));
 	map_init(map, width, height, vertices);
+	free(vertices);
 	return (map);
 }

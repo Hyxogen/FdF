@@ -6,14 +6,14 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 12:47:40 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/18 14:31:41 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/03 15:23:15 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../matrix4f.h"
 
 t_matrix4f
-	matrix4f_ortho(const t_ortho_settings *proj) {
+	matrix4f_ortho(const t_proj_settings *proj) {
 	t_matrix4f	ret;
 
 	matrix4f_clear(&ret);
