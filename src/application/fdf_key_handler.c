@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/02 08:00:11 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/02/02 15:49:57 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/03 08:05:32 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,20 @@ t_int32
 	if (keycode == KEY_ESC)
 		fdf_quit(instance);
 	if (keycode == KEY_UP)
-		fdf_move_map(instance, vector3f(0.0f, 0.25f, 0.0f));
+		fdf_move_map(instance, vector3f(0.0f, 0.0f, 0.25f));
 	if (keycode == KEY_DOWN)
-		fdf_move_map(instance, vector3f(0.0f, -0.25f, 0.0f));
+		fdf_move_map(instance, vector3f(0.0f, 0.0f, -0.25f));
 	if (keycode == KEY_LEFT)
 		fdf_move_map(instance, vector3f(-0.25f, 0.0f, 0.0f));
 	if (keycode == KEY_RIGHT)
 		fdf_move_map(instance, vector3f(0.25f, 0.0f, 0.0f));
 	if (keycode == KEY_Q)
-		fdf_increase_scale(instance, vector3f(1.1f, 1.1f, 1.1f));
+		fdf_move_map(instance, vector3f(0.0f, 0.25f, 0.0f));
 	if (keycode == KEY_E)
+		fdf_move_map(instance, vector3f(0.0f, -0.25f, 0.0f));
+	if (keycode == KEY_I)
+		fdf_increase_scale(instance, vector3f(1.1f, 1.1f, 1.1f));
+	if (keycode == KEY_O)
 		fdf_increase_scale(instance, vector3f(0.9f, 0.9f, 0.9f));
 	if (keycode == KEY_Z)
 		fdf_rotate_map(instance, vector3f(0.0f, 0.0f, M_PI / 10.0f));

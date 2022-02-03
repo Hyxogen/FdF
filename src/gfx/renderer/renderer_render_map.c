@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/02 10:24:08 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/02/02 14:58:26 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/03 08:06:12 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,8 @@ void
 	vertices = safe_malloc(sizeof(t_vector4f) * size);
 	ndc_vertices = safe_malloc(sizeof(t_vector2f) * size);
 	matrix4f_mulva(vertices, transformation, map->m_vertices, size);
+	_clip_coords(vertices, size);
+	_normalize_coords(vertices, size);
 	vector2f_convert4f(ndc_vertices, vertices, size);
 	render_quads_ndc(buffer,
 		vector2i(map->m_width, map->m_height), ndc_vertices, color);

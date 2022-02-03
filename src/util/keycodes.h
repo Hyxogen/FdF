@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/02 08:07:08 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/02/02 14:38:08 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/03 08:04:10 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # define KEY_DOWN	125
 # define KEY_RIGHT	124
 # define KEY_LEFT	123
+# define KEY_I		34
+# define KEY_O		31
 # define KEY_5		23
 # define KEY_Q		12
 # define KEY_E		14
