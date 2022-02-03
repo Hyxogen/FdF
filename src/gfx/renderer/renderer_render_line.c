@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/19 15:27:25 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/02/03 14:32:41 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/03 14:56:11 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,6 @@ void
 		count--;
 	}
 }
-
 
 /*Change clipline if projection near changes*/
 void

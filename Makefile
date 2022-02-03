@@ -86,9 +86,9 @@ LINUX_DEBUG_LINKFLAGS		:= -fsanitize=address
 LINUX_RELEASE_LINKSFLAGS	:= -fsanitize=address
 LINUX_DISTR_LINKSFLAGS		:=
 
-ALWAYS_DEBUG_CFLAGS			:= -g3 -O0 -fsanitize=address
-ALWAYS_DEBUG_CXXFLAGS		:= -g3 -O0 -fsanitize=address
-ALWAYS_DEBUG_LINKFLAGS		:= -fsanitize=address
+ALWAYS_DEBUG_CFLAGS			:= -g3 -O0
+ALWAYS_DEBUG_CXXFLAGS		:= -g3 -O0
+ALWAYS_DEBUG_LINKFLAGS		:=
 ALWAYS_DEBUG_DEFINES		:= -DFDF_DEBUG
 
 ALWAYS_RELEASE_CFLAGS		:= -g3 -O2 -fsanitize=address

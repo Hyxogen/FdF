@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/02 07:54:44 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/02/03 14:33:15 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/03 14:55:31 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ t_proj_settings
 
 	(void)instance;
 	settings.m_near = -1.0f;
-	settings.m_far = 10.0f;
-	settings.m_left = -5.0f;
-	settings.m_right = 5.0f;
-	settings.m_top = 5.0f;
-	settings.m_bottom = -5.0f;
+	settings.m_far = 100.0f;
+	settings.m_left = -1.0f;
+	settings.m_right = 1.0f;
+	settings.m_top = 1.0f;
+	settings.m_bottom = -1.0f;
 	return (settings);
 }
 
@@ -45,7 +45,7 @@ void
 	ib_clear(instance->m_main_window->m_imbuffer_front);
 	transformation = transform_get_matrix(&instance->m_map_transform);
 	settings = get_projection(instance);
-	projection = matrix4f_persp(&settings);
+	projection = matrix4f_identity();
 	transformation = matrix4f_mulm(&projection, &transformation);
 	render_map(instance->m_main_window->m_imbuffer_front,
 		&transformation, instance->m_loaded_map, color_white());
