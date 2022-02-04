@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/24 10:14:36 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/01/24 11:33:46 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/04 07:53:11 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ t_int32
 		map_str++;
 		len--;
 	}
+	if (len && !_parser_is_valid_entry(*map_str))
+		return (0);
 	while (len && _parser_is_valid_entry(*map_str))
 	{
 		map_str++;
@@ -43,7 +45,7 @@ t_int32
 		map_str++;
 		len--;
 	}
-	if (*map_str == '\0')
+	if (!len || *map_str == '\0')
 		return (0);
 	if (*map_str == '\n')
 		return (1);
@@ -66,7 +68,7 @@ t_int32
 }
 
 t_bool
-	_parser_fill(t_int32 *out, const char *map_str, t_size len)
+	_parser_fill(t_int32 *out, const char *map_str, t_size len, t_int32 total)
 {
 	while (len)
 	{
@@ -75,8 +77,10 @@ t_bool
 			map_str++;
 			len--;
 		}
-		if (len)
-			*out = ft_atoi(map_str);
+		if (total <= 0)
+			return (FALSE);
+		*out = ft_atoi(map_str);
+		total--;
 		while (len && _parser_is_valid_entry(*map_str))
 		{
 			map_str++;
@@ -87,8 +91,6 @@ t_bool
 			map_str++;
 			len--;
 		}
-		if (len && *map_str == ',')
-			return (FALSE);
 		out++;
 	}
 	return (TRUE);
@@ -105,7 +107,7 @@ t_int32
 	if (*width * *height == 0)
 		return (NULL);
 	heights = safe_malloc(sizeof(t_int32) * *width * *height);
-	if (!_parser_fill(heights, map_str, len))
+	if (!_parser_fill(heights, map_str, len, *width * *height))
 	{
 		free(heights);
 		return (NULL);
