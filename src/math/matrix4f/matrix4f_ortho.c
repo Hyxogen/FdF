@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/18 12:47:40 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/02/03 15:23:15 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/04 08:53:22 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_matrix4f
 	matrix4f_clear(&ret);
 	ret.m_elements[0 + 0 * 4] = 2.0f / (proj->m_right - proj->m_left);
 	ret.m_elements[1 + 1 * 4] = 2.0f / (proj->m_top - proj->m_bottom);
-	ret.m_elements[2 + 2 * 4] = 2.0f / (proj->m_far - proj->m_near);
+	ret.m_elements[2 + 2 * 4] = -2.0f / (proj->m_far - proj->m_near);
 	ret.m_elements[3 + 0 * 4] = -(proj->m_right + proj->m_left)
 		/ (proj->m_right - proj->m_left);
 	ret.m_elements[3 + 1 * 4] = -(proj->m_top + proj->m_bottom)
