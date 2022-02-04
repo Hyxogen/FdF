@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/02 13:23:57 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/02/03 15:34:21 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/04 08:33:52 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 #include <ft_stdlib.h>
 #include <math.h>
 
+/*
+matrix4f_rotation(vector3f(0.0f, 1.0f, 0.0f), M_PI / 4.0f);
+matrix4f_rotation(vector3f(1.0f, 0.0f, 0.0f), (7 * M_PI) / 36.0f);
+*/
 t_matrix4f
 	_get_iso_rotation(void)
 {
@@ -26,7 +30,7 @@ t_matrix4f
 
 	rotinit = matrix4f_rotation(vector3f(1.0f, 0.0f, 0.0f), M_PI / 2.0f);
 	rotxz = matrix4f_rotation(vector3f(0.0f, 1.0f, 0.0f), M_PI / 4.0f);
-	rotzy = matrix4f_rotation(vector3f(1.0f, 0.0f, 0.0f), (7 * M_PI) / 36.0f);
+	rotzy = matrix4f_rotation(vector3f(1.0f, 0.0f, 0.0f), -(7 * M_PI) / 36.0f);
 	total_rotation = matrix4f_mulm(&rotzy, &rotxz);
 	total_rotation = matrix4f_mulm(&total_rotation, &rotinit);
 	return (total_rotation);
@@ -51,7 +55,6 @@ t_matrix4f
 		index++;
 	}
 	scale = matrix4f_usscale(1.0f / largest);
-	scale.m_elements[0 + 0 * 4] *= -1;
 	return (scale);
 }
 
@@ -75,7 +78,7 @@ void
 	instance->m_map_transform.m_translation
 		= _get_iso_translation(instance->m_loaded_map);
 	vertices = safe_malloc(sizeof(t_vector4f) * count);
-	flip = matrix4f_sscale(-1.2f, 1.2f, 1.2f);
+	flip = matrix4f_sscale(1.2f, 1.2f, 1.2f);
 	transformation
 		= matrix4f_mulm(&instance->m_map_transform.m_rotation, &flip);
 	matrix4f_mulva(vertices, &transformation,

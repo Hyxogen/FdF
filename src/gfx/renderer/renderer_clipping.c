@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/03 09:48:36 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/02/03 15:50:52 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/04 08:12:33 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 t_bool
 	_should_clip(const t_vector4f *vector)
 {
-	return (vector->m_w == 0
-		|| vector->m_x < -vector->m_w || vector->m_x > vector->m_w
-		|| vector->m_y < -vector->m_w || vector->m_y > vector->m_w);
+	return (vector->m_x < -vector->m_w || vector->m_x > vector->m_w
+		|| vector->m_y < -vector->m_w || vector->m_y > vector->m_w
+		|| vector->m_z < -vector->m_w || vector->m_z > vector->m_w);
 }
 
 void
@@ -30,7 +30,7 @@ void
 
 	clip_ele = (t_fl32 *) clipped;
 	visb_ele = (t_fl32 *) visible;
-	if (clip_ele[axis] * sign < clip_ele[3])
+	if (clip_ele[axis] * sign <= clip_ele[3])
 		return ;
 	scale = visb_ele[3] - visb_ele[axis] * sign;
 	scale = scale / (scale - (clip_ele[3] - clip_ele[axis] * sign));

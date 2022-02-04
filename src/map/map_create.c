@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/20 09:09:10 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/02/03 15:31:17 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/04 08:31:49 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_vector3f
 	{
 		vertices[index].m_x = x;
 		vertices[index].m_y = y;
-		vertices[index].m_z = -((float) heights[index]);
+		vertices[index].m_z = (float) heights[index];
 		index++;
 		x += spacing;
 		if ((index % width) == 0)

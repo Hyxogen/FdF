@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/02 07:54:44 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/02/03 16:22:26 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/04 08:37:26 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ t_proj_settings
 {
 	t_proj_settings	settings;
 
-	settings.m_near = 1.0f;
+	settings.m_near = 0.5f;
 	settings.m_far = 100.0f;
-	settings.m_left = 1.0f;
-	settings.m_right = -1.0f;
-	settings.m_top = -1.0f;
-	settings.m_bottom = 1.0f;
+	settings.m_left = -1.0f;
+	settings.m_right = 1.0f;
+	settings.m_top = 1.0f;
+	settings.m_bottom = -1.0f;
 	return (settings);
 }
 
@@ -43,12 +43,7 @@ t_matrix4f
 t_matrix4f
 	get_ortho_mat(void)
 {
-	t_proj_settings	settings;
-	t_matrix4f		ortho_matrix;
-
-	settings = get_projection_settings();
-	ortho_matrix = matrix4f_ortho(&settings);
-	return (ortho_matrix);
+	return (matrix4f_identity());
 }
 
 void
