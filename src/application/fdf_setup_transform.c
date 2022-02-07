@@ -6,7 +6,7 @@
 /*   By: dmeijer <dmeijer@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/02/02 13:23:57 by dmeijer       #+#    #+#                 */
-/*   Updated: 2022/02/04 08:33:52 by dmeijer       ########   odam.nl         */
+/*   Updated: 2022/02/07 10:57:41 by dmeijer       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <ft_string.h>
 #include <ft_stdlib.h>
 #include <math.h>
+#include <stdlib.h>
 
 /*
 matrix4f_rotation(vector3f(0.0f, 1.0f, 0.0f), M_PI / 4.0f);
@@ -84,4 +85,5 @@ void
 	matrix4f_mulva(vertices, &transformation,
 		instance->m_loaded_map->m_vertices, count);
 	instance->m_map_transform.m_scale = _get_fit_scale(vertices, count);
+	free(vertices);
 }
